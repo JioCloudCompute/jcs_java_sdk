@@ -1,18 +1,16 @@
 package com.jcs_java_sdk;
 
-import java.util.TreeMap;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.*;
-import java.util.TimeZone;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map.Entry;
+import java.util.TimeZone;
+import java.util.TreeMap;
 
-import com.jcs_java_sdk.AuthVar;
-import com.jcs_java_sdk.Utils;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 public class Authorization 
 {
 	private AuthVar data;
@@ -67,7 +65,7 @@ public class Authorization
 			//url and utf-8
 			try 
 			{
-				qs+=entry.getKey()+"="+URLEncoder.encode(entry.getValue(),"UTF-8");
+				qs+=entry.getKey()+"="+URLEncoder.encode(entry.getValue(),"UTF-8")+"&";
 			} catch (UnsupportedEncodingException e) 
 			{	
 				e.printStackTrace();
@@ -85,6 +83,7 @@ public class Authorization
 		{
 			ss=ss+ this.data.port;
 		}
+		ss=ss+"\n"+ this.data.path + "\n";
 		this.addParams(params);
 		ss= ss+ sortParams(params);
 		return ss;

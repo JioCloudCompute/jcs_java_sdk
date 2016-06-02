@@ -1,6 +1,5 @@
 package com.jcs_java_sdk.compute_api;
 
-import java.util.Map;
 import java.util.TreeMap;
 
 import com.jcs_java_sdk.HttpVar;
@@ -17,7 +16,7 @@ public class Image
 		
 		for(int i=0 ;  i<req.getImageIds().size() ; i++)
 		{
-			params.put("ImageId" + Integer.toString(i), req.getImageIds().get(i));
+			params.put("ImageId." + Integer.toString(i+1), req.getImageIds().get(i));
 		}
 		
 		return Requestify.makeRequest(info, params);
