@@ -4,7 +4,7 @@ import java.util.*;
 
 public class DescribeImagesRequest 
 {
-	private List<String>imageIds;
+	private ArrayList<String>imageIds;
 	
 	public DescribeImagesRequest(){}
 	
@@ -12,7 +12,7 @@ public class DescribeImagesRequest
 		return imageIds;
 	}
 
-	public void setImageIds(List<String> imageIds) {
+	public void setImageIds(ArrayList<String> imageIds) {
 		this.imageIds = imageIds;
 	}
 	
