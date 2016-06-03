@@ -1,6 +1,15 @@
 package com.jcs_java_sdk;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.regex.Pattern;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 public class Utils {
 	
@@ -34,7 +43,6 @@ public class Utils {
 			return url.split("://")[1];
 		}		
 	}
-	
 	/*public static void main(String[] args)
 	{
 		System.out.println(getHost("https://compute.jiocloud.com"));
