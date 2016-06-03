@@ -1,6 +1,6 @@
 package com.jcs_java_sdk.compute_api.model;
 
-class GetPasswordDataRequest
+public class GetPasswordDataRequest
 {
 	private String instanceId;
 	private String privateKeyFile;

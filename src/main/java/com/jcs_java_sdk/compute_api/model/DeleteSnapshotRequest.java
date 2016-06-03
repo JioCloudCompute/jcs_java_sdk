@@ -1,6 +1,6 @@
 package com.jcs_java_sdk.compute_api.model;
 
-class DeleteSnapshotRequest
+public class DeleteSnapshotRequest
 {
 	private String snapshotId;
 	

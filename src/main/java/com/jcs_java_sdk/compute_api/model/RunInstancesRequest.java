@@ -35,11 +35,11 @@ public class RunInstancesRequest
 		this.instanceTypeId = instanceTypeId;
 	}
 
-	public ArrayList<BlockDeviceMapping> getBlocks() {
+	public ArrayList<BlockDeviceMapping> getBlockDeviceMapping() {
 		return blocks;
 	}
 
-	public void setBlocks(ArrayList<BlockDeviceMapping> blocks) {
+	public void setBlockDeviceMapping(ArrayList<BlockDeviceMapping> blocks) {
 		this.blocks = blocks;
 	}
 

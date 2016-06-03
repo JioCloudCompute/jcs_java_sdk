@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class TerminateInstancesRequest
 {
-	private ArrayList<String>instnaceIds;
+	private ArrayList<String>instanceIds;
 	
 	public TerminateInstancesRequest(){}
 
-	public ArrayList<String> getInstnaceIds() {
-		return instnaceIds;
+	public ArrayList<String> getInstanceIds() {
+		return instanceIds;
 	}
 
-	public void setInstnaceIds(ArrayList<String> instnaceIds) {
-		this.instnaceIds = instnaceIds;
+	public void setInstnaceIds(ArrayList<String> instanceIds) {
+		this.instanceIds = instanceIds;
 	}
 }

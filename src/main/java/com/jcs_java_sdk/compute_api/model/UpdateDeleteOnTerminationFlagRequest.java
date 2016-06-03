@@ -1,11 +1,11 @@
 package com.jcs_java_sdk.compute_api.model;
 
-public class UpdateDeleteOnTermination 
+public class UpdateDeleteOnTerminationFlagRequest 
 {
 	private String volumeId;
 	private boolean deleteOnTermination;
 	
-	public UpdateDeleteOnTermination()
+	public UpdateDeleteOnTerminationFlagRequest()
 	{
 		deleteOnTermination = false;
 	}
