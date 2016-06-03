@@ -34,6 +34,7 @@ public class Config {
 		secretKey = prop.getProperty("secretKey");
 		
 		//Set up endpoints
+		endPoints = new HashMap<String, String>();
 		endPoints.put("compute","https://compute.ind-west-1.staging.jiocloudservices.com");
 		endPoints.put("vpc", "https://vpc.ind-west-1.jiocloudservices.com");
 		endPoints.put("dss", "https://dss.ind-west-1.jiocloudservices.com");
@@ -57,7 +58,7 @@ public class Config {
 		return secretKey;
 	}
 	
-	public static String getServiceUrl(String serviceName){
+	public String getServiceUrl(String serviceName){
 		return (String)endPoints.get(serviceName);
 		
 	}
