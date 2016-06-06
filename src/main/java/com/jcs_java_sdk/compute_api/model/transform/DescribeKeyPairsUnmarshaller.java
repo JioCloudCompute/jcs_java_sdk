@@ -6,17 +6,17 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import com.jcs_java_sdk.compute_api.model.DescribeKeyPairResponse;
+import com.jcs_java_sdk.compute_api.model.DescribeKeyPairsResponse;
 
-public class DescribeKeyPairUnmarshaller {
+public class DescribeKeyPairsUnmarshaller {
 	
-	public static DescribeKeyPairResponse XMLObject(final String xmlDoc)
+	public static DescribeKeyPairsResponse XMLObject(final String xmlDoc)
 	{
 		JAXBContext jaxbContext;
 		try {
-			jaxbContext = JAXBContext.newInstance(DescribeKeyPairResponse.class);
+			jaxbContext = JAXBContext.newInstance(DescribeKeyPairsResponse.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			DescribeKeyPairResponse res = (DescribeKeyPairResponse) jaxbUnmarshaller.unmarshal(new StringReader(xmlDoc));
+			DescribeKeyPairsResponse res = (DescribeKeyPairsResponse) jaxbUnmarshaller.unmarshal(new StringReader(xmlDoc));
 			return res;
 		} catch (JAXBException e) {
 			e.printStackTrace();

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class DescribeKeyPairResponse {
+public class DescribeKeyPairsResponse {
 	@XmlElement
 	private String requestId;
 	

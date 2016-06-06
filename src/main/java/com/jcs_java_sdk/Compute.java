@@ -27,6 +27,7 @@ import com.jcs_java_sdk.compute_api.model.DescribeInstanceTypesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeInstanceTypesResponse;
 import com.jcs_java_sdk.compute_api.model.DescribeInstancesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeInstancesResponse;
+import com.jcs_java_sdk.compute_api.model.DescribeKeyPairsResponse;
 import com.jcs_java_sdk.compute_api.model.DescribeSnapshotsRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeSnapshotsResponse;
 import com.jcs_java_sdk.compute_api.model.DescribeVolumesRequest;
@@ -61,6 +62,7 @@ import com.jcs_java_sdk.compute_api.model.transform.DeleteVolumeUnmarshaller;
 import com.jcs_java_sdk.compute_api.model.transform.DescribeImagesUnmarshaller;
 import com.jcs_java_sdk.compute_api.model.transform.DescribeInstanceTypesUnmarshaller;
 import com.jcs_java_sdk.compute_api.model.transform.DescribeInstancesUnmarshaller;
+import com.jcs_java_sdk.compute_api.model.transform.DescribeKeyPairsUnmarshaller;
 import com.jcs_java_sdk.compute_api.model.transform.DescribeSnapshotsUnmarshaller;
 import com.jcs_java_sdk.compute_api.model.transform.DescribeVolumesUnmarshaller;
 import com.jcs_java_sdk.compute_api.model.transform.DetachVolumeUnmarshaller;
@@ -314,7 +316,7 @@ public class Compute
 	
 	public DescribeKeyPairsResponse describeKeyPairs() 
 	{
-		String response =  keyPair.describeKeyPairs(info, req);
+		String response =  keyPair.describeKeyPairs(info);
 		if(response != null)
 		{
 			return DescribeKeyPairsUnmarshaller.XMLObject(response);

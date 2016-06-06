@@ -23,17 +23,17 @@ import com.jcs_java_sdk.compute_api.model.DescribeInstanceTypesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeInstanceTypesResponse;
 import com.jcs_java_sdk.compute_api.model.DescribeInstancesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeInstancesResponse;
+import com.jcs_java_sdk.compute_api.model.DescribeKeyPairsResponse;
 import com.jcs_java_sdk.compute_api.model.DescribeSnapshotsRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeSnapshotsResponse;
 import com.jcs_java_sdk.compute_api.model.DescribeVolumesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeVolumesResponse;
 import com.jcs_java_sdk.compute_api.model.DetachVolumeRequest;
 import com.jcs_java_sdk.compute_api.model.DetachVolumeResponse;
-import com.jcs_java_sdk.compute_api.model.ImportKeyPairRequest;
-import com.jcs_java_sdk.compute_api.model.ImportKeyPairResponse;
 import com.jcs_java_sdk.compute_api.model.Instance;
 import com.jcs_java_sdk.compute_api.model.InstanceState;
 import com.jcs_java_sdk.compute_api.model.InstanceTypes;
+import com.jcs_java_sdk.compute_api.model.KeyPair;
 import com.jcs_java_sdk.compute_api.model.RebootInstancesRequest;
 import com.jcs_java_sdk.compute_api.model.RebootInstancesResponse;
 import com.jcs_java_sdk.compute_api.model.RunInstancesRequest;
@@ -50,22 +50,21 @@ import com.jcs_java_sdk.compute_api.model.TerminateInstancesResponse;
 import com.jcs_java_sdk.compute_api.model.UpdateDeleteOnTerminationFlagRequest;
 import com.jcs_java_sdk.compute_api.model.UpdateDeleteOnTerminationFlagResponse;
 import com.jcs_java_sdk.compute_api.model.Volume;
-import com.jcs_java_sdk.compute_api.model.transform.DescribeImagesUnmarshaller;
 
 public class Test {
+
+	private static Scanner scanner;
 
 	public static void main(String[] args) 
 	{
 		Compute obj = new Compute();
 		ArrayList<String> imageIds = new ArrayList<String>();
 		ArrayList<String> instanceIds = new ArrayList<String>();
-		imageIds.add("jmi-26f93d93");
-		req.setImageIds(imageIds);
-		DescribeImagesResponse res = DescribeImagesUnmarshaller.XMLObject(xmlDoc);
-		System.out.println( res.getRequestId());
 		int option;
-		Scanner scanner = new Scanner(System.in);
+		scanner = new Scanner(System.in);
+		
 		option = scanner.nextInt();
+		
 		while(option!=-1)
 		{
 			
@@ -74,7 +73,7 @@ public class Test {
 				case 0:
 				{
 					//describe Images
-					DescribeImagesRequest req0;
+					DescribeImagesRequest req0 = new DescribeImagesRequest();
 					DescribeImagesResponse res0;
 					res0 = obj.describeImages(req0);
 					if(res0 != null)System.out.println( res0.getImages().get(0).getImageId());
@@ -83,7 +82,7 @@ public class Test {
 				case 1:
 				{
 					//describe Instance 
-					DescribeInstancesRequest req1;
+					DescribeInstancesRequest req1 = new DescribeInstancesRequest();
 					DescribeInstancesResponse res1;
 					res1 = obj.describeInstances(req1);
 					if(res1 != null){
@@ -99,7 +98,7 @@ public class Test {
 				case 2:
 				{
 					//describe instance types
-					DescribeInstanceTypesRequest req2;
+					DescribeInstanceTypesRequest req2 = new DescribeInstanceTypesRequest();
 					DescribeInstanceTypesResponse res2;
 					res2 = obj.describeInstanceTypes(req2);
 					if(res2!=null){
@@ -111,7 +110,7 @@ public class Test {
 				case 3:
 				{
 					// Stop instances
-					StopInstancesRequest req3;
+					StopInstancesRequest req3 = new StopInstancesRequest();
 					StopInstancesResponse res3;
 					instanceIds.add("i-b95493fa");
 					req3.setInstanceIds(instanceIds);
@@ -130,7 +129,7 @@ public class Test {
 				}
 				case 4:	
 				{	//start Instances
-					StartInstancesRequest req4;
+					StartInstancesRequest req4 = new StartInstancesRequest();
 					StartInstancesResponse res4;
 					instanceIds.add("i-b95493fa");
 					req4.setInstanceIds(instanceIds);
@@ -150,7 +149,7 @@ public class Test {
 				case 5:
 				{
 					//Reboot Instances
-					RebootInstancesRequest req5;
+					RebootInstancesRequest req5 = new RebootInstancesRequest();
 					RebootInstancesResponse res5;
 					instanceIds.add("i-b95493fa");
 					req5.setInstanceIds(instanceIds);
@@ -169,7 +168,7 @@ public class Test {
 				case 6:
 				{
 					//terminate Instances
-					TerminateInstancesRequest req6;
+					TerminateInstancesRequest req6 = new TerminateInstancesRequest();
 					TerminateInstancesResponse res6;
 					instanceIds.add("i-b95493fa");
 					req6.setInstanceIds(instanceIds);
@@ -188,13 +187,13 @@ public class Test {
 				case 7:
 				{
 					// Run Instances
-					RunInstancesRequest req7;
+					RunInstancesRequest req7 = new RunInstancesRequest();
 					RunInstancesResponse res7;
 					req7.setImageId("jmi-bc345d58");
 					req7.setInstanceTypeId("c1.large");
 					res7 = obj.runInstances(req7);
 					if(res7!=null){
-						ArrayList< InstanceState> tr = new ArrayList<InstanceState>(res7.getInstances());
+						ArrayList< Instance> tr = new ArrayList<Instance>(res7.getInstances());
 
 						for(int i =0;i<tr.size();i++)
 						{
@@ -210,7 +209,7 @@ public class Test {
 					DescribeKeyPairsResponse res8;
 					res8 = obj.describeKeyPairs();
 					if(res8!=null){
-						ArrayList<KeyPair> tr = new ArrayList<KeyPair>(res8.getkeypairs());
+						ArrayList<KeyPair> tr = new ArrayList<KeyPair>(res8.getKeys());
 						for(int i=0 ; i<tr.size() ; i++)
 						{
 							System.out.println(tr.get(i).getKeyName());	
@@ -221,7 +220,7 @@ public class Test {
 				case 9:
 				{
 					//create key pair 
-					CreateKeyPairRequest req9;
+					CreateKeyPairRequest req9 = new CreateKeyPairRequest();
 					CreateKeyPairResponse res9;
 					req9.setKeyName("cpp_test");
 					res9 = obj.createKeyPair(req9);
@@ -235,7 +234,7 @@ public class Test {
 				case 10:
 				{
 					// Delete key pair
-					DeleteKeyPairRequest req10;
+					DeleteKeyPairRequest req10 = new DeleteKeyPairRequest();
 					DeleteKeyPairResponse res10;
 					req10.setKeyName("cpp_test");
 					res10 = obj.deleteKeyPair(req10);
@@ -247,7 +246,7 @@ public class Test {
 				case 11:
 				{
 					// create snapshot
-					CreateSnapshotRequest req11;
+					CreateSnapshotRequest req11 = new CreateSnapshotRequest();
 					CreateSnapshotResponse res11;
 					req11.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
 					res11 = obj.createSnapshot(req11);
@@ -262,7 +261,7 @@ public class Test {
 				case 12:
 				{
 					//Delete snapshot
-					DeleteSnapshotRequest req12;
+					DeleteSnapshotRequest req12 = new DeleteSnapshotRequest();
 					DeleteSnapshotResponse res12;
 					req12.setSnapshotId("9832ef5b-f139-4727-95da-bd558414618e");
 					res12 = obj.deleteSnapshot(req12);
@@ -274,7 +273,7 @@ public class Test {
 				case 13:
 				{
 					//describe snapshots 
-					DescribeSnapshotsRequest req13;
+					DescribeSnapshotsRequest req13 = new DescribeSnapshotsRequest();
 					DescribeSnapshotsResponse res13;
 					res13 = obj.describeSnapshots(req13);
 					if(res13!=null){
@@ -290,7 +289,7 @@ public class Test {
 				}
 				case 14:
 				{	// Create volume
-					CreateVolumeRequest req14;
+					CreateVolumeRequest req14 = new CreateVolumeRequest();
 					CreateVolumeResponse res14;
 					// req14.set_snapshot_id("54790b1f-0d24-4375-9d33-1437036ef877");
 					req14.setSize(6);
@@ -304,7 +303,7 @@ public class Test {
 				}
 				case 15:
 				{	// delete volume
-					DeleteVolumeRequest req15;
+					DeleteVolumeRequest req15 = new DeleteVolumeRequest();
 					DeleteVolumeResponse res15;
 					req15.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
 					res15 = obj.deleteVolume(req15);
@@ -315,7 +314,7 @@ public class Test {
 				}
 				case 16:
 				{	//attach volume
-					AttachVolumeRequest req16;
+					AttachVolumeRequest req16 = new AttachVolumeRequest();
 					AttachVolumeResponse res16;
 					req16.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
 					req16.setInstanceId("i-b95493fa");
@@ -329,7 +328,7 @@ public class Test {
 				case 17:
 				{
 					//detach volume
-					DetachVolumeRequest req17;
+					DetachVolumeRequest req17 = new DetachVolumeRequest();
 					DetachVolumeResponse res17;
 					req17.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
 					res17 = obj.detachVolume(req17);
@@ -341,7 +340,7 @@ public class Test {
 				case 18:
 				{
 					// Describe volumes
-					DescribeVolumesRequest req18;
+					DescribeVolumesRequest req18 = new DescribeVolumesRequest();
 					DescribeVolumesResponse res18;
 					res18 = obj.describeVolumes(req18);
 					if(res18!=null){
@@ -357,7 +356,7 @@ public class Test {
 				}
 				case 19:
 				{	// show delete on termination flag
-					ShowDeleteOnTerminationFlagRequest req19;
+					ShowDeleteOnTerminationFlagRequest req19 = new ShowDeleteOnTerminationFlagRequest();
 					ShowDeleteOnTerminationFlagResponse res19;
 					req19.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
 					res19 = obj.showDeleteOnTerminationFlag(req19);
@@ -370,7 +369,7 @@ public class Test {
 				case 20:
 				{
 					// update delete on termination flag
-					UpdateDeleteOnTerminationFlagRequest req20;
+					UpdateDeleteOnTerminationFlagRequest req20 = new UpdateDeleteOnTerminationFlagRequest();
 					UpdateDeleteOnTerminationFlagResponse res20;
 					req20.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
 					req20.setDeleteOnTermination(true);
