@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.jcs_java_sdk.compute_api.model.KeyPair;
 
-@XmlRootElement
+@XmlRootElement(name = "ImportKeyPairResponse")
 public class ImportKeyPairResponse {
 	
 	@XmlElement
