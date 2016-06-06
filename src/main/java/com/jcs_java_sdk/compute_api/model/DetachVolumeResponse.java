@@ -3,7 +3,7 @@ package com.jcs_java_sdk.compute_api.model;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "DetachVolumeResponse")
 public class DetachVolumeResponse {
 	@XmlElement
 	private String requestId;

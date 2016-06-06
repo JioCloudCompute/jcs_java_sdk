@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class DescribeInstanceTypesResponse {
 	
-	@XmlElement
+	@XmlElement(name = "DescribeInstanceTypesResponse")
 	private String requestId;
 	@XmlElementWrapper(name="instanceTypes")
 	@XmlElement(name="item")

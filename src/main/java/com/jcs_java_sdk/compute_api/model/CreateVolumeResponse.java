@@ -2,7 +2,7 @@ package com.jcs_java_sdk.compute_api.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-@XmlRootElement
+@XmlRootElement(name = "CreateVolumeResponse")
 public class CreateVolumeResponse {
 	@XmlElement
 	private String requestId;
