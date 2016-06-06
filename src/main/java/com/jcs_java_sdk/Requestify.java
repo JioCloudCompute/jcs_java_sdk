@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -114,14 +113,20 @@ public class Requestify
             }
         };
         
-//		System.out.println("asd");
-		URLConnection connection = new URL(requestString).openConnection();
+		HttpsURLConnection connection = (HttpsURLConnection) new URL(requestString).openConnection();
 		connection.setRequestProperty("Accept-Charset", "UTF-8");
 		InputStream response = connection.getInputStream();
+		int responseCode = connection.getResponseCode();
+		
 		
 		try (Scanner scanner = new Scanner(response)) {
 		    String responseBody = scanner.useDelimiter("\\A").next();
 		    System.out.println(responseBody);
+		    if(responseCode != 200)
+		    {
+		    	System.out.println(responseBody);
+				return null;
+		    }
 		    return responseBody;
 		}
 	}

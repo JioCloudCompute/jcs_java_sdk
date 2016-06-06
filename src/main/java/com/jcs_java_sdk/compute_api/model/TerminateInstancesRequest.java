@@ -12,7 +12,7 @@ public class TerminateInstancesRequest
 		return instanceIds;
 	}
 
-	public void setInstnaceIds(ArrayList<String> instanceIds) {
+	public void setInstanceIds(ArrayList<String> instanceIds) {
 		this.instanceIds = instanceIds;
 	}
 }

@@ -8,7 +8,7 @@ import javax.xml.bind.Unmarshaller;
 
 import com.jcs_java_sdk.compute_api.model.TerminateInstancesResponse;
 
-public class TerminateInstances {
+public class TerminateInstancesUnmarshaller {
 	
 	public static TerminateInstancesResponse XMLObject(final String xmlDoc)
 	{

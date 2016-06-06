@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class AttachVolumeResponse {
 	@XmlElement
-	String requestID;
+	String requestId;
 	@XmlElement
 	String deviceName;
 	@XmlElement
@@ -17,12 +17,12 @@ public class AttachVolumeResponse {
 	@XmlElement
 	String volumeId;
 	
-	public final String getRequestID() {
-		return requestID;
+	public final String getRequestId() {
+		return requestId;
 	}
 	
-	void setRequestID(String requestID) {
-		this.requestID = requestID;
+	void setRequestId(String requestId) {
+		this.requestId = requestId;
 	}
 	
 	public final String getDeviceName() {
