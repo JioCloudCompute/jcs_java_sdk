@@ -90,7 +90,7 @@ public class Volume
 		TreeMap<String, String>params = new TreeMap<>();
 		params.put("Action", "DeleteVolume");
 		params.put("Version", info.version);
-
+		System.out.println("ac");
 		if(req.getInstanceId().length() == 0)
 		{
 			System.out.println("Error : InstanceId required");

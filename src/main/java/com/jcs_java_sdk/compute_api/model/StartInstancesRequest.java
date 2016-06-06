@@ -6,7 +6,10 @@ public class StartInstancesRequest
 {
 	private ArrayList<String>instanceIds;
 	
-	public StartInstancesRequest(){}
+	public StartInstancesRequest()
+	{
+		instanceIds = new ArrayList<String>();
+	}
 
 	public ArrayList<String> getInstanceIds() {
 		return instanceIds;

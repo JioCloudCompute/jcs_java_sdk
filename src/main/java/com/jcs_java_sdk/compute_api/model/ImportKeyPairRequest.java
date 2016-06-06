@@ -5,7 +5,11 @@ public class ImportKeyPairRequest
 	private String keyName;
 	private String publicKeyMaterial;
 	
-	public ImportKeyPairRequest(){}
+	public ImportKeyPairRequest()
+	{
+		keyName = new String();
+		publicKeyMaterial = new String();
+	}
 
 	public String getKeyName() {
 		return keyName;

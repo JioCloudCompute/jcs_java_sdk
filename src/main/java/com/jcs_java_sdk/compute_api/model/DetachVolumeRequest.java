@@ -5,7 +5,11 @@ public class DetachVolumeRequest
 	private String instanceId;
 	private String volumeId;
 	
-	public DetachVolumeRequest(){}
+	public DetachVolumeRequest()
+	{
+		instanceId = new String();
+		volumeId = new String();
+	}
 
 	public String getInstanceId() {
 		return instanceId;

@@ -2,10 +2,16 @@ package com.jcs_java_sdk.compute_api.model;
 
 public class AttachVolumeRequest {
 	private String instanceId;
-	private String VolumeId;
-	private String Device;
+	private String volumeId;
+	private String device;
 	
-	public AttachVolumeRequest(){}
+	public AttachVolumeRequest()
+	{
+		instanceId = new String();
+		volumeId = new String();
+		device = new String();
+
+	}
 	
 	public String getInstanceId() 
 	{
@@ -17,19 +23,19 @@ public class AttachVolumeRequest {
 	}
 	public String getVolumeId() 
 	{
-		return VolumeId;
+		return volumeId;
 	}
 	public void setVolumeId(String volumeId) 
 	{
-		VolumeId = volumeId;
+		this.volumeId = volumeId;
 	}
 	public String getDevice() 
 	{
-		return Device;
+		return device;
 	}
 	public void setDevice(String device) 
 	{
-		Device = device;
+		this.device = device;
 	}
 	
 

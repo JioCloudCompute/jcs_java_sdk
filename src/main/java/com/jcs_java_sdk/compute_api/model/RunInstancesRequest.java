@@ -16,6 +16,13 @@ public class RunInstancesRequest
 	
 	public RunInstancesRequest()
 	{
+		imageId = new String();
+		instanceTypeId = new String();
+		blocks = new ArrayList<BlockDeviceMapping>();
+		subnetId = new String();
+		privateIpAddress = new String();
+		keyName = new String();
+		securityGroupIds = new ArrayList<String>();
 		instanceCount = -1;
 	}
 

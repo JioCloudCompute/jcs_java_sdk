@@ -11,6 +11,8 @@ public class DescribeSnapshotsRequest
 	
 	public DescribeSnapshotsRequest()
 	{
+		nextToken = new String();
+		snapshotIds = new ArrayList<String>();
 		detail = true;
 		maxResults = -1;
 	}

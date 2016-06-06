@@ -7,6 +7,7 @@ public class UpdateDeleteOnTerminationFlagRequest
 	
 	public UpdateDeleteOnTerminationFlagRequest()
 	{
+		volumeId = new String();
 		deleteOnTermination = false;
 	}
 

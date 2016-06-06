@@ -11,6 +11,8 @@ public class DescribeVolumesRequest
 	
 	public DescribeVolumesRequest()
 	{
+		nextToken = new String();
+		volumeIds = new ArrayList<String>();
 		maxResults = -1;
 		detail = true;
 	}

@@ -4,7 +4,10 @@ public class CreateSnapshotRequest
 {
 	private String volumeId;
 	
-	public CreateSnapshotRequest(){}
+	public CreateSnapshotRequest()
+	{
+		volumeId = new String();
+	}
 
 	public String getVolumeId() {
 		return volumeId;

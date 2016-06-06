@@ -6,7 +6,12 @@ public class GetPasswordDataRequest
 	private String privateKeyFile;
 	private String passphrase;
 	
-	public GetPasswordDataRequest(){}
+	public GetPasswordDataRequest()
+	{
+		instanceId = new String();
+		privateKeyFile = new String();
+		passphrase = new String();
+	}
 
 	public String getInstanceId() {
 		return instanceId;

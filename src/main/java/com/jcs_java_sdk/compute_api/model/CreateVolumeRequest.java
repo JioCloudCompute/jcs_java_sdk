@@ -7,6 +7,7 @@ public class CreateVolumeRequest
 	
 	public CreateVolumeRequest()
 	{
+		snapshotId = new String();
 		size = -1;
 	}
 

@@ -4,7 +4,10 @@ public class CreateKeyPairRequest
 {
 	private String keyName;
 	
-	public CreateKeyPairRequest(){}
+	public CreateKeyPairRequest()
+	{
+		keyName = new String();
+	}
 
 	public String getKeyName() {
 		return keyName;

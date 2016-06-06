@@ -6,7 +6,10 @@ public class StopInstancesRequest
 {
 	private ArrayList<String>instanceIds;
 	
-	public StopInstancesRequest(){}
+	public StopInstancesRequest()
+	{
+		instanceIds = new ArrayList<String>();
+	}
 
 	public ArrayList<String> getInstanceIds() {
 		return instanceIds;

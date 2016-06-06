@@ -90,6 +90,10 @@ public class Compute
 	{
 		info = new HttpVar();
 		image = new Image();
+		instance = new Instance();
+		keyPair = new KeyPair();
+		snapshot = new Snapshot();
+		volume = new Volume();
 		try 
 		{
 			config = new Config();

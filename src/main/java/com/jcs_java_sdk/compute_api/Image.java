@@ -13,12 +13,10 @@ public class Image
 		TreeMap<String, String>params = new TreeMap<>();
 		params.put("Action", "DescribeImages");
 		params.put("Version", info.version);
-		
 		for(int i=0 ;  i<req.getImageIds().size() ; i++)
 		{
 			params.put("ImageId." + Integer.toString(i+1), req.getImageIds().get(i));
 		}
-		
 		return Requestify.makeRequest(info, params);
 	}
 }

@@ -6,7 +6,10 @@ public class TerminateInstancesRequest
 {
 	private ArrayList<String>instanceIds;
 	
-	public TerminateInstancesRequest(){}
+	public TerminateInstancesRequest()
+	{
+		instanceIds = new ArrayList<String>();
+	}
 
 	public ArrayList<String> getInstanceIds() {
 		return instanceIds;

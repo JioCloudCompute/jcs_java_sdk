@@ -6,7 +6,10 @@ public class RebootInstancesRequest
 {
 	private ArrayList<String>instanceIds;
 	
-	public RebootInstancesRequest(){}
+	public RebootInstancesRequest()
+	{
+		instanceIds = new ArrayList<String>();
+	}
 
 	public ArrayList<String> getInstanceIds() {
 		return instanceIds;

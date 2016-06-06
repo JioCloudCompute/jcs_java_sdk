@@ -6,7 +6,10 @@ public class DescribeImagesRequest
 {
 	private ArrayList<String>imageIds;
 	
-	public DescribeImagesRequest(){}
+	public DescribeImagesRequest()
+	{
+		imageIds = new ArrayList<String>();
+	}
 	
 	public List<String> getImageIds() {
 		return imageIds;

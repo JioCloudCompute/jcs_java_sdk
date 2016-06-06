@@ -4,7 +4,10 @@ public class DeleteVolumeRequest
 {
 	private String volumeId;
 	
-	public DeleteVolumeRequest(){}
+	public DeleteVolumeRequest()
+	{
+		volumeId = new String();
+	}
 
 	public String getVolumeId() {
 		return volumeId;

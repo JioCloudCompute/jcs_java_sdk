@@ -6,7 +6,10 @@ public class DescribeInstancesRequest
 {
 	private ArrayList<String> instanceIds;
 	
-	public DescribeInstancesRequest(){}
+	public DescribeInstancesRequest()
+	{
+		instanceIds = new ArrayList<String>();
+	}
 
 	public ArrayList<String> getInstanceIds() {
 		return instanceIds;

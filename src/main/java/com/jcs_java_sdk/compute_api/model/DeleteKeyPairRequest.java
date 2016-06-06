@@ -5,7 +5,10 @@ public class DeleteKeyPairRequest
 {
 	private String keyName;
 	
-	public DeleteKeyPairRequest(){}
+	public DeleteKeyPairRequest()
+	{
+		keyName = new String();
+	}
 
 	public String getKeyName() {
 		return keyName;

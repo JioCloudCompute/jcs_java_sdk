@@ -4,7 +4,10 @@ public class DeleteSnapshotRequest
 {
 	private String snapshotId;
 	
-	public DeleteSnapshotRequest(){}
+	public DeleteSnapshotRequest()
+	{
+		snapshotId = new String();
+	}
 
 	public String getSnapshotId() {
 		return snapshotId;

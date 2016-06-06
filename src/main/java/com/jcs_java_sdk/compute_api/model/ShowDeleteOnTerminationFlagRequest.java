@@ -4,7 +4,10 @@ public class ShowDeleteOnTerminationFlagRequest
 {
 	private String volumeId;
 	
-	public ShowDeleteOnTerminationFlagRequest(){}
+	public ShowDeleteOnTerminationFlagRequest()
+	{
+		volumeId = new String();
+	}
 
 	public String getVolumeId() {
 		return volumeId;

@@ -49,6 +49,7 @@ public class Requestify
 			{
 			    try 
 			    {
+			    	System.out.println(entry.getKey() +" " +entry.getValue());
 					requestString += entry.getKey() + "=" +  URLEncoder.encode(entry.getValue(), "UTF-8") + "&";
 				} 
 			    catch (UnsupportedEncodingException e) 
