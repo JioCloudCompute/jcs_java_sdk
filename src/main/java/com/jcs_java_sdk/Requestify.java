@@ -20,6 +20,8 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import com.jcs_java_sdk.compute_api.model.ErrorResponse;
+
 public class Requestify 
 {
 	public static String makeRequest(HttpVar info, TreeMap<String, String>params) 
@@ -125,8 +127,8 @@ public class Requestify
 		    System.out.println(responseBody);
 		    if(responseCode != 200)
 		    {
-		    	System.out.println(responseBody);
-				return null;
+		    	ErrorResponse.Error(responseBody);
+		    	return null;
 		    }
 		    return responseBody;
 		}
