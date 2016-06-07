@@ -8,21 +8,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "DescribeSnapshotsResponse")
 public class DescribeSnapshotsResponse {
+	
 	@XmlElement
 	private String requestId;
 	@XmlElementWrapper(name="snapshotSet")
+	@XmlElement(name = "item")
 	private List<Snapshot> snapshots;
 	
-	public String getRequestId() {
+	public final String getRequestId() {
 		return requestId;
 	}
-	public void setRequestId(String requestId) {
+	void setRequestId(String requestId) {
 		this.requestId = requestId;
 	}
-	public List<Snapshot> getSnapshots() {
+	public final List<Snapshot> getSnapshots() {
 		return snapshots;
 	}
-	public void setSnapshots(List<Snapshot> snapshots) {
+	void setSnapshots(List<Snapshot> snapshots) {
 		this.snapshots = snapshots;
 	}
 }

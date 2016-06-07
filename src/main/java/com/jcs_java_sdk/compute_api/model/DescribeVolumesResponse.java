@@ -3,14 +3,16 @@ package com.jcs_java_sdk.compute_api.model;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "DescribeVolumeResponse")
+@XmlRootElement(name = "DescribeVolumesResponse")
 public class DescribeVolumesResponse {
 	
 	@XmlElement
 	private String requestId;
-	@XmlElement
+	@XmlElementWrapper(name = "volumeSet")
+	@XmlElement(name = "item")
 	private List<Volume> volumes;
 	public final String getRequestId() {
 		return requestId;
