@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.crypto.Cipher;
 import javax.xml.bind.DatatypeConverter;
 
 import com.jcs_java_sdk.compute_api.model.AttachVolumeRequest;
@@ -34,6 +35,8 @@ import com.jcs_java_sdk.compute_api.model.DescribeVolumesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeVolumesResponse;
 import com.jcs_java_sdk.compute_api.model.DetachVolumeRequest;
 import com.jcs_java_sdk.compute_api.model.DetachVolumeResponse;
+import com.jcs_java_sdk.compute_api.model.GetPasswordDataRequest;
+import com.jcs_java_sdk.compute_api.model.GetPasswordDataResponse;
 import com.jcs_java_sdk.compute_api.model.ImportKeyPairRequest;
 import com.jcs_java_sdk.compute_api.model.ImportKeyPairResponse;
 import com.jcs_java_sdk.compute_api.model.Instance;
@@ -414,6 +417,19 @@ public class Test {
 					if(res21!=null){
 						System.out.println(res21.getKeyFingerprint());
 						System.out.println(res21.getKeyName());
+					}
+					break;
+				}
+				case 22:
+				{
+					// update delete on termination flag
+					GetPasswordDataRequest req22 = new GetPasswordDataRequest();
+					GetPasswordDataResponse res22;
+					req22.setInstanceId("816109b0-5e42-4612-9f67-6a233a699cb7");
+					req22.setPrivateKeyFile("");
+					res22 = obj.getPasswordData(req22);
+					if(res22!=null){
+						System.out.println(res22.getPasswordData());
 					}
 					break;
 				}
