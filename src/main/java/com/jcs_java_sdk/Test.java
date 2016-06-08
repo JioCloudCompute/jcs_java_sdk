@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.crypto.Cipher;
 import javax.xml.bind.DatatypeConverter;
 
 import com.jcs_java_sdk.compute_api.model.AttachVolumeRequest;
@@ -73,6 +72,8 @@ public class Test {
 		scanner = new Scanner(System.in);
 		
 		option = scanner.nextInt();
+		
+		
 		
 		while(option!=-1)
 		{
@@ -425,7 +426,7 @@ public class Test {
 					// update delete on termination flag
 					GetPasswordDataRequest req22 = new GetPasswordDataRequest();
 					GetPasswordDataResponse res22;
-					req22.setInstanceId("816109b0-5e42-4612-9f67-6a233a699cb7");
+					req22.setInstanceId("i-02eb8842");
 					req22.setPrivateKeyFile("");
 					res22 = obj.getPasswordData(req22);
 					if(res22!=null){
