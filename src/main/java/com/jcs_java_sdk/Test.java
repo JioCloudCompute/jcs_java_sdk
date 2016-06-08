@@ -368,7 +368,7 @@ public class Test {
 				{	// show delete on termination flag
 					ShowDeleteOnTerminationFlagRequest req19 = new ShowDeleteOnTerminationFlagRequest();
 					ShowDeleteOnTerminationFlagResponse res19;
-					req19.setVolumeId("816109b0-5e42-4612-9f67-6a233a699cb7");
+					req19.setVolumeId("ddabc7d3-276f-408c-8dc7-098f400cd3dd");
 					res19 = obj.showDeleteOnTerminationFlag(req19);
 					if(res19!=null){
 					System.out.println(res19.getVolumeId());

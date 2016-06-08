@@ -1,15 +1,13 @@
 package com.jcs_java_sdk;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigInteger;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.regex.Pattern;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 public class Utils {
 	
@@ -43,6 +41,33 @@ public class Utils {
 			return url.split("://")[1];
 		}		
 	}
+	
+	public static BigInteger asciiHexlify(String asciiValue)
+	{
+		char[] chars = asciiValue.toCharArray();
+	    StringBuffer hex = new StringBuffer();
+	    for (int i = 0; i < chars.length; i++)
+	    {
+	        hex.append(Integer.toHexString((int) chars[i]));
+	    }
+	    BigInteger result = new BigInteger(hex.toString(), 16);
+	    
+	    return result;
+	}
+	
+	public static PrivateKey getPrivateKey(String filename) throws Exception {
+        
+		File f = new File(filename);
+        FileInputStream fis = new FileInputStream(f);
+        DataInputStream dis = new DataInputStream(fis);
+        byte[] keyBytes = new byte[(int) f.length()];
+        dis.readFully(keyBytes);
+        dis.close();
+
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        return kf.generatePrivate(spec);
+    }
 	/*public static void main(String[] args)
 	{
 		System.out.println(getHost("https://compute.jiocloud.com"));

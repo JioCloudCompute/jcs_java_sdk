@@ -1,17 +1,31 @@
 package com.jcs_java_sdk.compute_api;
 
+import java.awt.RenderingHints.Key;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
 import java.util.TreeMap;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.xml.bind.DatatypeConverter;
 
 import com.jcs_java_sdk.HttpVar;
 import com.jcs_java_sdk.Requestify;
+import com.jcs_java_sdk.Utils;
 import com.jcs_java_sdk.compute_api.model.DescribeInstanceTypesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeInstancesRequest;
+import com.jcs_java_sdk.compute_api.model.GetPasswordDataRequest;
 import com.jcs_java_sdk.compute_api.model.RebootInstancesRequest;
 import com.jcs_java_sdk.compute_api.model.RunInstancesRequest;
 import com.jcs_java_sdk.compute_api.model.StartInstancesRequest;
 import com.jcs_java_sdk.compute_api.model.StopInstancesRequest;
 import com.jcs_java_sdk.compute_api.model.TerminateInstancesRequest;
-import com.jcs_java_sdk.compute_api.model.GetPasswordDataRequest;
 
 public class Instance
 {
@@ -186,6 +200,53 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}
 	
+	private String decryptInstancePassword(String password, String privateKeyFile, String passphrase)
+	{
+		PrivateKey privateKey;
+		String decryptedPassword = null;
+		String decryptedPassword_ = null;
+		try {
+			decryptedPassword = new String(DatatypeConverter.parseBase64Binary(password), "UTF-8");
+			decryptedPassword_= new String(DatatypeConverter.parseBase64Binary(decryptedPassword), "UTF-8");
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		BigInteger cipherText = Utils.asciiHexlify(decryptedPassword_);
+		String decryptedMessage = null;
+		
+		try {
+			privateKey = Utils.getPrivateKey(privateKeyFile);
+			Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			decrypt.init(Cipher.DECRYPT_MODE, privateKey);
+			decryptedMessage = new String(decrypt.doFinal(cipherText.toString().getBytes()), StandardCharsets.UTF_8);
+			
+		} catch (InvalidKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalBlockSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return decryptedMessage;
+		
+	}
+	
 	public String getPasswordData(HttpVar info, GetPasswordDataRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<>();
@@ -202,4 +263,6 @@ public class Instance
 		}
 		return Requestify.makeRequest(info, params);
 	}
+	
+	
 }
