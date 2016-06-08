@@ -1,7 +1,11 @@
 package com.jcs_java_sdk;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.xml.bind.DatatypeConverter;
 
 import com.jcs_java_sdk.compute_api.model.AttachVolumeRequest;
 import com.jcs_java_sdk.compute_api.model.AttachVolumeResponse;
@@ -30,6 +34,8 @@ import com.jcs_java_sdk.compute_api.model.DescribeVolumesRequest;
 import com.jcs_java_sdk.compute_api.model.DescribeVolumesResponse;
 import com.jcs_java_sdk.compute_api.model.DetachVolumeRequest;
 import com.jcs_java_sdk.compute_api.model.DetachVolumeResponse;
+import com.jcs_java_sdk.compute_api.model.ImportKeyPairRequest;
+import com.jcs_java_sdk.compute_api.model.ImportKeyPairResponse;
 import com.jcs_java_sdk.compute_api.model.Instance;
 import com.jcs_java_sdk.compute_api.model.InstanceState;
 import com.jcs_java_sdk.compute_api.model.InstanceTypes;
@@ -112,7 +118,7 @@ public class Test {
 					// Stop instances
 					StopInstancesRequest req3 = new StopInstancesRequest();
 					StopInstancesResponse res3;
-					instanceIds.add("i-b95493fa");
+					instanceIds.add("i-02eb8842");
 					req3.setInstanceIds(instanceIds);
 					res3 = obj.stopInstances(req3);
 					if(res3!=null){
@@ -131,7 +137,7 @@ public class Test {
 				{	//start Instances
 					StartInstancesRequest req4 = new StartInstancesRequest();
 					StartInstancesResponse res4;
-					instanceIds.add("i-b95493fa");
+					instanceIds.add("i-02eb8842");
 					req4.setInstanceIds(instanceIds);
 					res4 = obj.startInstances(req4);
 					if(res4!=null){	
@@ -151,7 +157,7 @@ public class Test {
 					//Reboot Instances
 					RebootInstancesRequest req5 = new RebootInstancesRequest();
 					RebootInstancesResponse res5;
-					instanceIds.add("i-b95493fa");
+					instanceIds.add("i-02eb8842");
 					req5.setInstanceIds(instanceIds);
 					res5 = obj.rebootInstances(req5);
 					if(res5!=null){
@@ -170,7 +176,7 @@ public class Test {
 					//terminate Instances
 					TerminateInstancesRequest req6 = new TerminateInstancesRequest();
 					TerminateInstancesResponse res6;
-					instanceIds.add("i-b95493fa");
+					instanceIds.add("i-02eb8842");
 					req6.setInstanceIds(instanceIds);
 					res6 = obj.terminateInstances(req6);
 					if(res6!=null){
@@ -226,7 +232,7 @@ public class Test {
 					res9 = obj.createKeyPair(req9);
 					if(res9!=null){
 						System.out.println(res9.getKeyMaterial());
-						System.out.println(res9.getKeyFingerPrint());
+						System.out.println(res9.getKeyFingerprint());
 						System.out.println(res9.getKeyName())	;
 					}
 					break;
@@ -239,7 +245,8 @@ public class Test {
 					req10.setKeyName("cpp_test");
 					res10 = obj.deleteKeyPair(req10);
 					if(res10!=null){
-						System.out.println(res10.isResult());
+						if(res10.isResult())
+							System.out.println(res10.isResult());
 					}
 					break;
 				}
@@ -248,7 +255,7 @@ public class Test {
 					// create snapshot
 					CreateSnapshotRequest req11 = new CreateSnapshotRequest();
 					CreateSnapshotResponse res11;
-					req11.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
+					req11.setVolumeId("816109b0-5e42-4612-9f67-6a233a699cb7");
 					res11 = obj.createSnapshot(req11);
 					if(res11!=null){
 						System.out.println(res11.getStatus());
@@ -305,7 +312,7 @@ public class Test {
 				{	// delete volume
 					DeleteVolumeRequest req15 = new DeleteVolumeRequest();
 					DeleteVolumeResponse res15;
-					req15.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
+					req15.setVolumeId("3d018698-f39d-4aac-9b42-b59446bf490d");
 					res15 = obj.deleteVolume(req15);
 					if(res15!=null){
 						System.out.println(res15.isResult());
@@ -316,8 +323,8 @@ public class Test {
 				{	//attach volume
 					AttachVolumeRequest req16 = new AttachVolumeRequest();
 					AttachVolumeResponse res16;
-					req16.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
-					req16.setInstanceId("i-b95493fa");
+					req16.setVolumeId("816109b0-5e42-4612-9f67-6a233a699cb7");
+					req16.setInstanceId("i-02eb8842");
 					req16.setDevice("/dev/vdb");
 					res16 = obj.attachVolume(req16);
 					if(res16!=null){
@@ -330,7 +337,7 @@ public class Test {
 					//detach volume
 					DetachVolumeRequest req17 = new DetachVolumeRequest();
 					DetachVolumeResponse res17;
-					req17.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
+					req17.setVolumeId("816109b0-5e42-4612-9f67-6a233a699cb7");
 					res17 = obj.detachVolume(req17);
 					if(res17!=null){
 						System.out.println(res17.getStatus());
@@ -358,10 +365,10 @@ public class Test {
 				{	// show delete on termination flag
 					ShowDeleteOnTerminationFlagRequest req19 = new ShowDeleteOnTerminationFlagRequest();
 					ShowDeleteOnTerminationFlagResponse res19;
-					req19.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
+					req19.setVolumeId("816109b0-5e42-4612-9f67-6a233a699cb7");
 					res19 = obj.showDeleteOnTerminationFlag(req19);
 					if(res19!=null){
-						System.out.println(res19.getVolumeId());
+					System.out.println(res19.getVolumeId());
 						System.out.println(res19.isDeleteOnTermination());
 					}
 					break;
@@ -371,7 +378,7 @@ public class Test {
 					// update delete on termination flag
 					UpdateDeleteOnTerminationFlagRequest req20 = new UpdateDeleteOnTerminationFlagRequest();
 					UpdateDeleteOnTerminationFlagResponse res20;
-					req20.setVolumeId("97fe21a3-7310-4428-80ec-f88eb7ec8e95");
+					req20.setVolumeId("816109b0-5e42-4612-9f67-6a233a699cb7");
 					req20.setDeleteOnTermination(true);
 					res20 = obj.updateDeleteOnTerminationFlag(req20);
 					if(res20!=null){
@@ -383,20 +390,32 @@ public class Test {
 				case 21:
 				{
 					// import key pair
-//					ImportKeyPairRequest req21;
-//					ImportKeyPairResponse res21;
-//					ifstream f("key.pub");
-//					string s;
-//					getline(f,s);
-//					f.close();		
-//					req21.set_key_name("importTest");
-//					req21.set_public_key_material(utils::base64encode(s.c_str(), s.size()));
-//					res21 = obj.import_key_pair(req21);
-//					if(res21!=null){
-//						System.out.println((res21.get_key()).get_key_fingerprint());
-//						System.out.println((res21.get_key()).get_key_name());
-//					}
-//					break;
+					ImportKeyPairRequest req21 = new ImportKeyPairRequest();
+					ImportKeyPairResponse res21;
+					File f = new File("/home/gowtham/Desktop/reliance/workspace/jcs_java_sdk/src/main/java/com/jcs_java_sdk/key.pub");
+					String s = new String();
+					Scanner scanner;
+					try 
+					{
+						scanner = new Scanner(f);
+						s = scanner.nextLine();
+						scanner.close();
+					} 
+					catch (FileNotFoundException e) 
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					req21.setKeyName("import_test_java");
+					System.out.println(s);
+					req21.setPublicKeyMaterial(DatatypeConverter.printBase64Binary(s.getBytes()));
+					res21 = obj.importKeyPair(req21);
+					if(res21!=null){
+						System.out.println(res21.getKeyFingerprint());
+						System.out.println(res21.getKeyName());
+					}
+					break;
 				}
 
 				default:

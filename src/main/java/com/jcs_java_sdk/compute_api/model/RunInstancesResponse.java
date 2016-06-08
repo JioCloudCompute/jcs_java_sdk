@@ -3,6 +3,7 @@ package com.jcs_java_sdk.compute_api.model;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "RunInstancesResponse")
@@ -10,7 +11,8 @@ public class RunInstancesResponse {
 	
 	@XmlElement
 	private String requestId;
-	@XmlElement
+	@XmlElementWrapper(name = "instancesSet")
+	@XmlElement(name= "item")
 	private List<Instance> instances;
 	
 	void setRequestId(String requestId) {

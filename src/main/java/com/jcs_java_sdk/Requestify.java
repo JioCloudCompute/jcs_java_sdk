@@ -61,7 +61,6 @@ public class Requestify
 				}
 			}
 			requestString = requestString.substring(0, requestString.length()-1);
-			
 			return requester(requestString );
 		}
 		catch (IOException e) 
@@ -118,9 +117,14 @@ public class Requestify
         
 		HttpsURLConnection connection = (HttpsURLConnection) new URL(requestString).openConnection();
 		connection.setRequestProperty("Accept-Charset", "UTF-8");
-		InputStream response = connection.getInputStream();
 		int responseCode = connection.getResponseCode();
-		
+		InputStream response;  
+		if(responseCode == 200){
+			response = connection.getInputStream();
+		}
+		else{
+			response = connection.getErrorStream();
+		}
 		
 		try (Scanner scanner = new Scanner(response)) {
 		    String responseBody = scanner.useDelimiter("\\A").next();

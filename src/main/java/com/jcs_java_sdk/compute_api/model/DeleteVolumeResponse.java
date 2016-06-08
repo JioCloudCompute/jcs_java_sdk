@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "DeleteVolumeResponse")
 public class DeleteVolumeResponse {
 	
-	@XmlElement
+	@XmlElement (name="return")
 	private boolean result;
 	@XmlElement
 	private String requestId;

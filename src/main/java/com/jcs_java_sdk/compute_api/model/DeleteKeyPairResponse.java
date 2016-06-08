@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "DeleteKeyPairResponse")
 public class DeleteKeyPairResponse {
-	@XmlElement
+	@XmlElement(name = "return")
 	private boolean result;
 	@XmlElement
 	private String requestId;

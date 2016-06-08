@@ -17,7 +17,7 @@ public class Snapshot {
 	private String snapshotId;
 	@XmlElement
 	private String createTime;
-	@XmlElement
+	@XmlElement (name = "volumeSize")
 	private float size;
 	
 	void setStatus(String status) {

@@ -1,1 +1,3 @@
 target/
+src/main/java/com/jcs_java_sdk/key
+src/main/java/com/jcs_java_sdk/key.pub

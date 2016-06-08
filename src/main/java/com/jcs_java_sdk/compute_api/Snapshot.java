@@ -29,7 +29,7 @@ public class Snapshot
 			params.put("MaxResults", Integer.toString(req.getMaxResults()));
 		}
 
-		if(req.getNextToken() != "")
+		if(req.getNextToken().length() != 0)
 		{
 			params.put("NextToken", req.getNextToken());
 		}
@@ -70,7 +70,7 @@ public class Snapshot
 		}
 		else
 		{
-			params.put("SnpashotId", req.getSnapshotId());
+			params.put("SnapshotId", req.getSnapshotId());
 		}
 		return Requestify.makeRequest(info, params);		
 	}

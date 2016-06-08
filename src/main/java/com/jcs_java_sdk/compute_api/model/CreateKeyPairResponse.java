@@ -9,7 +9,7 @@ public class CreateKeyPairResponse {
 	@XmlElement
 	private String requestId;
 	@XmlElement
-	private String keyFingerPrint;
+	private String keyFingerprint;
 	@XmlElement
 	private String keyMaterial;
 	@XmlElement
@@ -21,11 +21,11 @@ public class CreateKeyPairResponse {
 	final void setRequestId(String requestId) {
 		this.requestId = requestId;
 	}
-	public final String getKeyFingerPrint() {
-		return keyFingerPrint;
+	public final String getKeyFingerprint() {
+		return keyFingerprint;
 	}
-	final void setKeyFingerPrint(String keyFingerPrint) {
-		this.keyFingerPrint = keyFingerPrint;
+	final void setKeyFingerPrint(String keyFingerprint) {
+		this.keyFingerprint = keyFingerprint;
 	}
 	public final String getKeyMaterial() {
 		return keyMaterial;

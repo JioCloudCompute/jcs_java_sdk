@@ -11,20 +11,26 @@ public class ImportKeyPairResponse {
 	@XmlElement
 	private String requestId;
 	@XmlElement
-	private KeyPair keyPair;
-	
+	private String keyFingerprint;
+	@XmlElement
+	private String keyName;
 	public final String getRequestId() {
 		return requestId;
 	}
-	public final KeyPair getKeyPair() {
-		return keyPair;
+	public final String getKeyFingerprint() {
+		return keyFingerprint;
+	}
+	public final String getKeyName() {
+		return keyName;
 	}
 	void setRequestId(String requestId) {
 		this.requestId = requestId;
 	}
-	void setKeyPair(KeyPair keyPair) {
-		this.keyPair = keyPair;
+	void setKeyFingerprint(String keyFingerprint) {
+		this.keyFingerprint = keyFingerprint;
 	}
-	
+	void setKeyName(String keyName) {
+		this.keyName = keyName;
+	}
 
 }

@@ -33,7 +33,7 @@ public class Volume
 			params.put("MaxResults", Integer.toString(req.getMaxResults()));
 		}
 
-		if(req.getNextToken() != "")
+		if(req.getNextToken().length() != 0)
 		{
 			params.put("NextToken", req.getNextToken());
 		}
@@ -88,7 +88,7 @@ public class Volume
 	public String attachVolume(HttpVar info, AttachVolumeRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<>();
-		params.put("Action", "DeleteVolume");
+		params.put("Action", "AttachVolume");
 		params.put("Version", info.version);
 		System.out.println("ac");
 		if(req.getInstanceId().length() == 0)

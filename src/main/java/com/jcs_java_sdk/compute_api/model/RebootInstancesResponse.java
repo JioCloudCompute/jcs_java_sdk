@@ -11,7 +11,7 @@ public class RebootInstancesResponse {
 	
 	@XmlElement
 	private String requestId;
-	@XmlElementWrapper(name="instanceSet")
+	@XmlElementWrapper(name="instancesSet")
 	@XmlElement(name = "item")
 	private List<InstanceState> instances;
 	public final String getRequestId() {

@@ -129,7 +129,7 @@ public class Instance
 	public String runInstances(HttpVar info, RunInstancesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<>();
-		params.put("Action", "StartInstances");
+		params.put("Action", "RunInstances");
 		params.put("Version", info.version);
 		
 		if(req.getImageId().length() == 0)
@@ -162,11 +162,11 @@ public class Instance
 		{
 			params.put("InstanceCount", Integer.toString(req.getInstanceCount()));
 		}
-		if(req.getSubnetId()!="")
+		if(req.getSubnetId().length()!=0)
 		{
 			params.put("SubnetId", req.getSubnetId());
 		}
-		if(req.getPrivateIpAddress()!="")
+		if(req.getPrivateIpAddress().length()!=0)
 		{
 			params.put("PrivateIpAddress", req.getPrivateIpAddress());
 		}
@@ -178,7 +178,7 @@ public class Instance
 			}
 		}
 		
-		if(req.getKeyName() != "")
+		if(req.getKeyName().length()!=0)
 		{
 			params.put("KeyName", req.getKeyName());
 		}

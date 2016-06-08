@@ -8,13 +8,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ShowDeleteOnTerminationFlagResponse {
 	@XmlElement
 	private String requestId;
-	@XmlElementWrapper(name = "volume")
+
 	@XmlElement
 	private String instanceId;
-	@XmlElementWrapper(name = "volume")
 	@XmlElement
 	private String volumeId;
-	@XmlElementWrapper(name = "volume")
 	@XmlElement
 	private boolean deleteOnTermination;
 	public final String getRequestId() {

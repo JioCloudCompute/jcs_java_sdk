@@ -28,9 +28,9 @@ public class ErrorResponse {
 				doc = db.parse(is);
 				Element Root = doc.getDocumentElement();
 				Node Ch = Root.getFirstChild().getFirstChild().getFirstChild();
-				System.out.println(Ch.getNodeValue());
+				System.out.println(Ch.getTextContent());
 				Ch= Ch.getNextSibling();
-				System.out.println(Ch.getNodeValue());
+				System.out.println(Ch.getTextContent());
 				
 			} catch (SAXException | IOException e) {
 				e.printStackTrace();
