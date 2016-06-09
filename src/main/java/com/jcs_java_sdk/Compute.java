@@ -103,7 +103,7 @@ public class Compute
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		info.url = config.getServiceUrl("compute");
+		info.url = Config.getServiceUrl("compute");
 		info.verb = "GET";
 		info.headers = "";
 		info.version = "2016-03-01";
@@ -193,7 +193,8 @@ public class Compute
 		String response = instance.getPasswordData(info, req);
 		if(response != null)
 		{
-			return GetPasswordDataUnmarshaller.XMLObject(response);
+			GetPasswordDataResponse res =  GetPasswordDataUnmarshaller.XMLObject(response);
+			System.out.println(instance.decryptInstancePassword(res.getPasswordData(), "/home/gowtham/Desktop/reliance/pkcs8_key", "")); 
 		}
 		return null;
 	}

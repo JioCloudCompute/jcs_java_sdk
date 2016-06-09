@@ -200,15 +200,15 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}
 	
-	private String decryptInstancePassword(String password, String privateKeyFile, String passphrase)
+	public String decryptInstancePassword(String password, String privateKeyFile, String passphrase)
 	{
 		PrivateKey privateKey;
 		String decryptedPassword = null;
-		String decryptedPassword_ = null;
+		byte[] decryptedPassword_ = null;
 		try {
 			decryptedPassword = new String(DatatypeConverter.parseBase64Binary(password), "UTF-8");
-			decryptedPassword_= new String(DatatypeConverter.parseBase64Binary(decryptedPassword), "UTF-8");
 			
+			decryptedPassword_ = DatatypeConverter.parseBase64Binary(decryptedPassword);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -218,6 +218,8 @@ public class Instance
 		
 		try {
 			privateKey = Utils.getPrivateKey(privateKeyFile);
+			System.out.println(cipherText);
+			System.out.println(password);
 			Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			decrypt.init(Cipher.DECRYPT_MODE, privateKey);
 			decryptedMessage = new String(decrypt.doFinal(cipherText.toString().getBytes()), StandardCharsets.UTF_8);

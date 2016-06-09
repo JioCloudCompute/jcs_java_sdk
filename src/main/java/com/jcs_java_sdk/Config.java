@@ -8,11 +8,11 @@ import java.util.Properties;
 
 public class Config {
 	
-	boolean secure;
-	boolean debug;
-	String accessKey;
-	String secretKey;
-	HashMap<String, String> endPoints;
+	static boolean secure;
+	static boolean debug;
+	static String accessKey;
+	static String secretKey;
+	static HashMap<String, String> endPoints;
 	public Config() throws IOException
 	{
 		secure = false;
@@ -32,6 +32,8 @@ public class Config {
 		
 		accessKey = prop.getProperty("accessKey");
 		secretKey = prop.getProperty("secretKey");
+		secure = Boolean.parseBoolean(prop.getProperty("secure"));
+		secure = Boolean.parseBoolean(prop.getProperty("debug"));
 		
 		//Set up endpoints
 		endPoints = new HashMap<String, String>();
@@ -42,23 +44,23 @@ public class Config {
 		endPoints.put("rds", "https://rds.ind-west-1.jiocloudservices.com");
 	}
 
-	public boolean isSecure() {
+	public static boolean isSecure() {
 		return secure;
 	}
 
-	public boolean isDebug() {
+	public static boolean isDebug() {
 		return debug;
 	}
 
-	public String getAccessKey() {
+	public static String getAccessKey() {
 		return accessKey;
 	}
 
-	public String getSecretKey() {
+	public static String getSecretKey() {
 		return secretKey;
 	}
 	
-	public String getServiceUrl(String serviceName){
+	public static String getServiceUrl(String serviceName){
 		return (String)endPoints.get(serviceName);
 		
 	}

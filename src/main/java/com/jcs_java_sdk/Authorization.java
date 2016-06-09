@@ -50,7 +50,7 @@ public class Authorization
 		params.put("SignatureMethod", "HmacSHA256");
 		//Time
 		Date dNow = new Date();
-		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		formatDate.setTimeZone(TimeZone.getTimeZone("GMT"));
 		
 		params.put("Timestamp", formatDate.format(dNow));

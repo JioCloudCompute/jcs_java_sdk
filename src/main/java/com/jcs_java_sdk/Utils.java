@@ -42,13 +42,18 @@ public class Utils {
 		}		
 	}
 	
-	public static BigInteger asciiHexlify(String asciiValue)
+	public static BigInteger asciiHexlify(byte[] decryptedPassword_)
 	{
-		char[] chars = asciiValue.toCharArray();
+		
 	    StringBuffer hex = new StringBuffer();
-	    for (int i = 0; i < chars.length; i++)
+	    int temp;
+	    for (int i = 0; i < decryptedPassword_.length; i++)
 	    {
-	        hex.append(Integer.toHexString((int) chars[i]));
+	    	temp = (int) decryptedPassword_[i];
+	    	if(temp<0)temp=temp+256;
+	    	System.out.print(Integer.toHexString(temp) + " ");
+	        hex.append(Integer.toHexString(temp));
+//	        System.out.print(temp + " ");
 	    }
 	    BigInteger result = new BigInteger(hex.toString(), 16);
 	    
@@ -58,15 +63,16 @@ public class Utils {
 	public static PrivateKey getPrivateKey(String filename) throws Exception {
         
 		File f = new File(filename);
-        FileInputStream fis = new FileInputStream(f);
-        DataInputStream dis = new DataInputStream(fis);
-        byte[] keyBytes = new byte[(int) f.length()];
-        dis.readFully(keyBytes);
-        dis.close();
+	    FileInputStream fis = new FileInputStream(f);
+	    DataInputStream dis = new DataInputStream(fis);
+	    byte[] keyBytes = new byte[(int)f.length()];
+	    dis.readFully(keyBytes);
+	    dis.close();
 
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory kf = KeyFactory.getInstance("RSA");
-        return kf.generatePrivate(spec);
+	    PKCS8EncodedKeySpec spec =
+	      new PKCS8EncodedKeySpec(keyBytes);
+	    KeyFactory kf = KeyFactory.getInstance("RSA");
+	    return kf.generatePrivate(spec);
     }
 	/*public static void main(String[] args)
 	{

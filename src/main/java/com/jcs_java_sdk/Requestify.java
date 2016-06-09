@@ -30,12 +30,12 @@ public class Requestify
 		Config config;
 		try 
 		{
-			config = new Config();
+			boolean secure = Config.isSecure();
 			authData.url = info.url;
 			authData.verb = info.verb;
 			authData.headers = info.headers;
-			authData.accessKey = config.getAccessKey();
-			authData.secretKey = config.getSecretKey();
+			authData.accessKey = Config.getAccessKey();
+			authData.secretKey = Config.getSecretKey();
 			authData.path = "";
 			if(info.url.endsWith("/"))
 			{
@@ -61,7 +61,8 @@ public class Requestify
 				}
 			}
 			requestString = requestString.substring(0, requestString.length()-1);
-			return requester(requestString );
+			System.out.println(requestString);
+			return requester(requestString);
 		}
 		catch (IOException e) 
 		{
@@ -85,35 +86,38 @@ public class Requestify
 	private static String requester (String requestString ) throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException
 	{
 	       // Create a trust manager that does not validate certificate chains
-        TrustManager[] trustAllCerts = new TrustManager[] 
-        {	new X509TrustManager() 
-        	{
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() 
-                {
-                    return null;
-                }
-                public void checkClientTrusted(X509Certificate[] certs, String authType) 
-                {
-                }
-                public void checkServerTrusted(X509Certificate[] certs, String authType) 
-                {
-                }
-            }
-        };
- 
-        // Install the all-trusting trust manager
-        SSLContext sc = SSLContext.getInstance("SSL");
-        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
- 
-        // Create all-trusting host name verifier
-        HostnameVerifier allHostsValid = new HostnameVerifier() 
-        {
-            public boolean verify(String hostname, SSLSession session) 
-            {
-                return true;
-            }
-        };
+		if(!Config.isSecure())
+		{
+	        TrustManager[] trustAllCerts = new TrustManager[] 
+	        {	new X509TrustManager() 
+	        	{
+	                public java.security.cert.X509Certificate[] getAcceptedIssuers() 
+	                {
+	                    return null;
+	                }
+	                public void checkClientTrusted(X509Certificate[] certs, String authType) 
+	                {
+	                }
+	                public void checkServerTrusted(X509Certificate[] certs, String authType) 
+	                {
+	                }
+	            }
+	        };
+	 
+	        // Install the all-trusting trust manager
+		        SSLContext sc = SSLContext.getInstance("SSL");
+		        sc.init(null, trustAllCerts, new java.security.SecureRandom());
+		        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		 
+		        // Create all-trusting host name verifier
+		        HostnameVerifier allHostsValid = new HostnameVerifier() 
+		        {
+		            public boolean verify(String hostname, SSLSession session) 
+		            {
+		                return true;
+		            }
+	        };
+		}
         
 		HttpsURLConnection connection = (HttpsURLConnection) new URL(requestString).openConnection();
 		connection.setRequestProperty("Accept-Charset", "UTF-8");
