@@ -27,10 +27,8 @@ public class Requestify
 	public static String makeRequest(HttpVar info, TreeMap<String, String>params) 
 	{
 		AuthVar authData = new AuthVar();
-		Config config;
 		try 
 		{
-			boolean secure = Config.isSecure();
 			authData.url = info.url;
 			authData.verb = info.verb;
 			authData.headers = info.headers;

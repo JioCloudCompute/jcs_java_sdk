@@ -33,7 +33,7 @@ public class Config {
 		accessKey = prop.getProperty("accessKey");
 		secretKey = prop.getProperty("secretKey");
 		secure = Boolean.parseBoolean(prop.getProperty("secure"));
-		secure = Boolean.parseBoolean(prop.getProperty("debug"));
+		debug = Boolean.parseBoolean(prop.getProperty("debug"));
 		
 		//Set up endpoints
 		endPoints = new HashMap<String, String>();

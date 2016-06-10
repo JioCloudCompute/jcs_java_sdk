@@ -20,7 +20,7 @@ public class CreateSnapshotRequest
 	}
 	/// Setter for the private variable volumeId
 	/**
-		@param volume_id_ : volume id of the volume for which snapshot will be created(unique for each volume)
+		@param volumeId : volume id of the volume for which snapshot will be created(unique for each volume)
 	*/
 	public void setVolumeId(String volumeId) {
 		this.volumeId = volumeId;

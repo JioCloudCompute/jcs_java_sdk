@@ -2,8 +2,6 @@ package com.jcs_java_sdk;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -67,42 +65,7 @@ public class Test {
 	private static Scanner scanner;
 
 	public static void main(String[] args) throws UnsupportedEncodingException, FileNotFoundException 
-	{	//String a = DatatypeConverter.printBase64Binary(DatatypeConverter.printBase64Binary("cDA1T2V5M29xdFFPdVFoTDhWemJiWUE4TjdjcFA5Znpla2xHRWVrY3ZVSTlEWWJDWGlvU1JiWkZvUDNlZjJJR3RnZ1dlN1RKVkx5M0VyemxYT0hveWZTRjRZRjhNMmcyV09xNytGbEJtZmhJT3lmR3BqbUJjem4wOHpvckNSclAreVVEUG8zd1E0UnQ3bnZGaGVEWlBsaTd0dGRPWHdCSkFpZS9STXZ5R0xHOFF2UFlxcmpUb25aZTVpM0tMcmFZZ1FsQmRKUlNUeVpmY3U2cTJxaUxXeHJINXB6RlFlVnNGMjVEcVFlVW9yanRub3F5OUQ1L3BDKzdMdFU1QlhsNE9ucEhrVmlmNVBqQUoydE9hRFBBdXJRSTY3K0V5eEk5eWRRay83dDNWUms3ZEhFNTdOSGtsdGlnVmtrZ1VTM0tXR3ZZVzBlclFmRk5yNmR3cXI1dWlnPT0=".getBytes()).getBytes());
-		String a = "p05Oey3oqtQOuQhL8VzbbYA8N7cpP9fzeklGEekcvUI9DYbCXioSRbZFoP3ef2IGtggWe7TJVLy3ErzlXOHoyfSF4YF8M2g2WOq7+FlBmfhIOyfGpjmBczn08zorCRrP+yUDPo3wQ4Rt7nvFheDZPli7ttdOXwBJAie/RMvyGLG8QvPYqrjTonZe5i3KLraYgQlBdJRSTyZfcu6q2qiLWxrH5pzFQeVsF25DqQeUorjtnoqy9D5/pC+7LtU5BXl4OnpHkVif5PjAJ2tOaDPAurQI67+EyxI9ydQk/7t3VRk7dHE57NHkltigVkkgUS3KWGvYW0erQfFNr6dwqr5uig==";
-		System.out.println(a);
-		String b=null;
-		
-			
-			byte[] bytes = DatatypeConverter.parseBase64Binary(a);
-			String aaa = new String(bytes);
-			System.out.println(aaa);
-			for(int i=0 ; i<bytes.length;i++){
-				System.out.print( bytes[i] + " " );
-			}
-			System.out.println("decoded "+ b);
-			byte[] test_bytes = aaa.getBytes();
-			
-			FileOutputStream out;
-			try {
-				out = new FileOutputStream("the-file-name");
-				out.write(bytes);
-				out.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				
-			}
-		
-		
-		/*try {
-			byte[] bytes = b.getBytes("US-ASCII");
-			for(int i=0 ; i<bytes.length;i++){
-				System.out.print(bytes[i]+ " ");
-			}
-			
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
+	{	
 		Compute obj = new Compute();
 		ArrayList<String> imageIds = new ArrayList<String>();
 		ArrayList<String> instanceIds = new ArrayList<String>();
