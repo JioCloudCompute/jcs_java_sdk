@@ -55,6 +55,7 @@ public class Utils {
 	        hex.append(Integer.toHexString(temp));
 //	        System.out.print(temp + " ");
 	    }
+	    System.out.println(hex.toString());
 	    BigInteger result = new BigInteger(hex.toString(), 16);
 	    
 	    return result;
