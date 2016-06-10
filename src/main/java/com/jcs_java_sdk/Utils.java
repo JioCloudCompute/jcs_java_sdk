@@ -3,7 +3,6 @@ package com.jcs_java_sdk;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.math.BigInteger;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
