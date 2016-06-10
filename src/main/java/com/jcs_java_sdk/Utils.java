@@ -3,7 +3,6 @@ package com.jcs_java_sdk;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.math.BigInteger;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -40,25 +39,6 @@ public class Utils {
 		{
 			return url.split("://")[1];
 		}		
-	}
-	
-	public static BigInteger asciiHexlify(byte[] decryptedPassword_)
-	{
-		
-	    StringBuffer hex = new StringBuffer();
-	    int temp;
-	    for (int i = 0; i < decryptedPassword_.length; i++)
-	    {
-	    	temp = (int) decryptedPassword_[i];
-	    	if(temp<0)temp=temp+256;
-	    	System.out.print(Integer.toHexString(temp) + " ");
-	        hex.append(Integer.toHexString(temp));
-//	        System.out.print(temp + " ");
-	    }
-	    System.out.println(hex.toString());
-	    BigInteger result = new BigInteger(hex.toString(), 16);
-	    
-	    return result;
 	}
 	
 	public static PrivateKey getPrivateKey(String filename) throws Exception {

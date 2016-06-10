@@ -203,26 +203,28 @@ public class Instance
 	public String decryptInstancePassword(String password, String privateKeyFile, String passphrase)
 	{
 		PrivateKey privateKey;
+		
 		String decryptedPassword = null;
 		byte[] decryptedPassword_ = null;
+		
 		try {
 			decryptedPassword = new String(DatatypeConverter.parseBase64Binary(password), "UTF-8");
-			
 			decryptedPassword_ = DatatypeConverter.parseBase64Binary(decryptedPassword);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		
-		BigInteger cipherText = Utils.asciiHexlify(decryptedPassword_);
+		//BigInteger cipherText = Utils.asciiHexlify(decryptedPassword_);
 		String decryptedMessage = null;
 		
 		try {
 			privateKey = Utils.getPrivateKey(privateKeyFile);
-			System.out.println(cipherText);
 			System.out.println(password);
 			Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			decrypt.init(Cipher.DECRYPT_MODE, privateKey);
-			decryptedMessage = new String(decrypt.doFinal(cipherText.toString().getBytes()), StandardCharsets.UTF_8);
+			decryptedMessage = new String(decrypt.doFinal(decryptedPassword_), StandardCharsets.UTF_8);
+			
+			System.out.println(decryptedMessage);
 			
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
