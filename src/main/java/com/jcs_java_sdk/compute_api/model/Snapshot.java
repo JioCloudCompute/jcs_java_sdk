@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-
+///Class to Handle Snapshot Object
 public class Snapshot {
 	@XmlElement
 	private String status;
@@ -42,18 +42,38 @@ public class Snapshot {
 	public final String getStatus() {
 		return status;
 	}
+	///Getter for the Volume ID 
+		/**
+			@return final string
+		*/
 	public final String getVolumeId() {
 		return volumeId;
 	}
+	///Getter for Attachments to the snapshot
+	/**
+		@return final List<AttachmentSet>
+	*/
 	public final List<AttachmentSet> getAttachments() {
 		return attachments;
 	}
+	///Getter for the Snapshot ID of the snapshot
+		/**
+			@return final string
+		*/
 	public final String getSnapshotId() {
 		return snapshotId;
 	}
+	///Getter for the start time of the Snapshot
+		/**
+			@return final string 
+		*/
 	public final String getCreateTime() {
 		return createTime;
 	}
+	///Getter for the Volume Size of the Snapshot
+	/**
+		@return final float
+	*/
 	public final float getSize() {
 		return size;
 	}

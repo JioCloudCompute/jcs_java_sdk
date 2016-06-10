@@ -11,15 +11,31 @@ public class BlockDeviceInstance {
 	private boolean deleteOnTermination;
 	@XmlElement
 	private String volumeId;
+	///Getter for Status of the Block Device
+		/**
+			@return final string
+		*/
 	public final String getStatus() {
 		return status;
 	}
+	///Getter for Device Name of the Block
+		/**
+			@return final string
+		*/
 	public final String getDeviceName() {
 		return deviceName;
 	}
+	///Getter for the boolean of DeleteOntermination Flag of the block
+		/**
+			@return final boolean
+		*/
 	public final boolean isDeleteOnTermination() {
 		return deleteOnTermination;
 	}
+	///Getter for Volume ID
+		/**
+			@return final string
+		*/
 	public final String getVolumeId() {
 		return volumeId;
 	}

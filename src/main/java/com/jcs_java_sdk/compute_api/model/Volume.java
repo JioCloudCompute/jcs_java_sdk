@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-
+///Class to Handle Volume Oject
 public class Volume {
 	@XmlElement
 	private String status;
@@ -19,24 +19,49 @@ public class Volume {
 	private String createTime;
 	@XmlElement
 	private float size;
+	///Getter for the Current Status of the Volume Object
+		/**
+			@return final string
+		*/
 	public final String getStatus() {
 		return status;
 	}
+	///Getter for the current volume ID
+		/**
+			@return final string
+		*/
 	public final String getVolumeId() {
 		return volumeId;
 	}
+		///Getter for the Attachment Info Related to Volume
+		/**
+			@return final List<AttachmentSet>
+		*/
 	public final List<AttachmentSet> getAttachmentSet() {
 		return attachmentSet;
 	}
+	///Getter for the Snapshot ID 
+		/**
+			@return final string
+		*/
 	public final String getSnapshotId() {
 		return snapshotId;
 	}
+	///Getter for the Create Time of the Volume
+		/**
+			@return final string
+		*/
 	public final String getCreateTime() {
 		return createTime;
 	}
+		///Getter for the Size of the Volume
+		/**
+			@return final float
+		*/
 	public final float getSize() {
 		return size;
 	}
+
 	void setStatus(String status) {
 		this.status = status;
 	}

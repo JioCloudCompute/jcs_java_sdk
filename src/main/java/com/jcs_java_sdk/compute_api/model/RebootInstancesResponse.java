@@ -7,6 +7,11 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "RebootInstancesResponse")
+
+	/// Class to handle Reboot Instance Request's Response
+	/**
+		This Response Class has member functions that returns the description of the Instances requested to Reboot.  
+	*/
 public class RebootInstancesResponse {
 	
 	@XmlElement
@@ -14,9 +19,18 @@ public class RebootInstancesResponse {
 	@XmlElementWrapper(name="instancesSet")
 	@XmlElement(name = "item")
 	private List<InstanceState> instances;
+		///Getter for the Unique Request ID
+		/**
+			@return final string
+		*/
 	public final String getRequestId() {
 		return requestId;
 	}
+		///Getter for the Description of the instances that were requested to reboot
+		/**
+			@return final vector<instance_set>
+			A Lis of objects of class instance_set
+		*/
 	public final List<InstanceState> getInstances() {
 		return instances;
 	}

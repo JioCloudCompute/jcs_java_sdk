@@ -194,7 +194,8 @@ public class Compute
 		if(response != null)
 		{
 			GetPasswordDataResponse res =  GetPasswordDataUnmarshaller.XMLObject(response);
-			System.out.println(instance.decryptInstancePassword(res.getPasswordData(), "/home/gowtham/Desktop/reliance/pkcs8_key", "")); 
+			res.setPasswordData((instance.decryptInstancePassword(res.getPasswordData(), "/home/gowtham/Desktop/reliance/pkcs8_key", "")));
+			return res;
 		}
 		return null;
 	}

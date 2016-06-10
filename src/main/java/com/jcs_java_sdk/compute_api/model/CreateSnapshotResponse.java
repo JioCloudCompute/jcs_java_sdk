@@ -24,21 +24,21 @@ public class CreateSnapshotResponse {
 	private String startTime;
 	///Getter for the Unique Request ID
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getRequestId() {
 		return requestId;
 	}
 	///Getter for the Status of the Snapshot created
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getStatus() {
 		return status;
 	}
 	///Getter for the ID of the snapshot created
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getSnapshotId() {
 		return snapshotId;
@@ -52,14 +52,14 @@ public class CreateSnapshotResponse {
 	}
 	///Getter for the Volume ID attached with the Snapshot created
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getVolumeId() {
 		return volumeId;
 	}
 	///Getter for the time Snapshot was created
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getStartTime() {
 		return startTime;

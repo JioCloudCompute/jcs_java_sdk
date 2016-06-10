@@ -4,6 +4,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "DetachVolumeResponse")
+/// Class to handle Detach Volume Request's Response
+	/**
+		This Response Class has member functions that returns the description of the Volume requested to detach.  
+	*/
 public class DetachVolumeResponse {
 	@XmlElement
 	private String requestId;
@@ -17,21 +21,47 @@ public class DetachVolumeResponse {
 	private String status;
 	@XmlElement
 	private String volumeId;
+	///Getter for the Unique Request ID
+		/**
+			@return final string
+		*/
 	public final String getRequestId() {
 		return requestId;
 	}
+	///Getter for the Device Name of the Volume
+		/**
+			@return final string
+		*/
 	public final String getDevice() {
 		return device;
 	}
+	///Getter for the instance ID from which the volume got Dettached
+		/**
+			@return final string
+		*/
+		
 	public final String getInstanceId() {
 		return instanceId;
 	}
+	///Getter for the Delete On termination Flag
+		/**
+			@return final bool
+			True if volume get's Deleted** on Termination of the instance to which the it is attached
+		*/
 	public final boolean isDeleteOnTermination() {
 		return deleteOnTermination;
 	}
+	///Getter for the Current Status of the Volume
+		/**
+			@return final string
+		*/
 	public final String getStatus() {
 		return status;
 	}
+	///Getter for the Volume ID
+		/**
+			@return final string
+		*/
 	public final String getVolumeId() {
 		return volumeId;
 	}

@@ -40,28 +40,28 @@ public class CreateVolumeResponse {
 	}
 	///Getter for the Unique Request ID
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getRequestId() {
 		return requestId;
 	}
 	///Getter for the Status of the volume created
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getStatus() {
 		return status;
 	}
 	///Getter for the ID of the volume created
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getVolumeId() {
 		return volumeId;
 	}
 	///Getter for the ID of the snapshot to which the volume is attached
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getSnapshotId() {
 		return snapshotId;
@@ -75,7 +75,7 @@ public class CreateVolumeResponse {
 	}
 	///Getter for the time Volume was created
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getCreateTime() {
 		return createTime;

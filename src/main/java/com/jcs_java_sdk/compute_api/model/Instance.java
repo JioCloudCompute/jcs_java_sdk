@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-
+///Class Describing Details of Instance
 public class Instance {
 	
 	@XmlElementWrapper(name = "blockDeviceMapping")
@@ -40,39 +40,89 @@ public class Instance {
 	public final List<BlockDeviceInstance> getBlockDeviceMapping() {
 		return blockDeviceMapping;
 	}
+	///Getter for the DNS Name 
+		/**
+			@return final string
+		*/
 	public final String getDnsName() {
 		return dnsName;
 	}
+	///Getter for the Unique Instance ID of the instance
+		/**
+			@return final string
+		*/
 	public final String getInstanceId() {
 		return instanceId;
 	}
+	///Getter for the State of the instance
+		/**
+			@return final string
+		*/
 	public final String getInstanceState() {
 		return instanceState;
 	}
+	///Getter for the Image Id to which the Instance belongs
+		/**
+			@return final string
+		*/
 	public final String getImageId() {
 		return imageId;
 	}
+	///Getter for the Private DNS Name
+		/**
+			@return final string
+		*/
 	public final String getPrivateDnsName() {
 		return privateDnsName;
 	}
+	///Getter for Key Name
+		/**
+			@return final string
+		*/
 	public final String getKeyName() {
 		return keyName;
 	}
+	///Getter for the Launch Time of the Instance
+		/**
+			@return final string
+		*/
+		
 	public final String getLaunchTime() {
 		return launchTime;
 	}
+	///Getter for the Subet ID to which the Instance belongs
+		/**
+			@return final string
+		*/
 	public final String getSubnetId() {
 		return subnetId;
 	}
+	///Getter for the Groups to which instance belongs to.
+		/**
+			@return final vector<group>
+			A List of objects of class group_set
+		*/
 	public final List<Group> getGroups() {
 		return groups;
 	}
+	///Getter for the VPC ID of the Instance
+		/**
+			@return final string
+		*/
 	public final String getVpcId() {
 		return vpcId;
 	}
+	///Getter for the Type of the Instance
+		/**
+			@return final string
+		*/
 	public final String getInstanceType() {
 		return instanceType;
 	}
+	///Getter for the Private IP address of the Instance
+		/**
+			@return final string
+		*/
 	public final String getPrivateIpAddress() {
 		return privateIpAddress;
 	}

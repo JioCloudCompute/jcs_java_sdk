@@ -14,9 +14,17 @@ public class Group {
 	void setGroupId(String groupId) {
 		this.groupId = groupId;
 	}
+	///Getter for Group Name of the Group
+		/**
+			@return final string
+		*/
 	public final String getGroupName() {
 		return groupName;
 	}
+	///Getter for Unique Group ID
+		/**
+			@return final string
+		*/
 	public final String getGroupId() {
 		return groupId;
 	}

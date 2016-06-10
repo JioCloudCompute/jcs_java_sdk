@@ -23,7 +23,7 @@ public class DeleteKeyPairResponse {
 	}
 	///Getter for the Unique Request ID
 		/**
-			@return const string
+			@return final string
 		*/
 	public final String getRequestId() {
 		return requestId;

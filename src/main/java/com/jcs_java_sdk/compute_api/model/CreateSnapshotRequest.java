@@ -6,7 +6,7 @@ package com.jcs_java_sdk.compute_api.model;
 public class CreateSnapshotRequest
 {
 	private String volumeId;
-	/// Constructor	
+	/// finalructor	
 	public CreateSnapshotRequest()
 	{
 		volumeId = new String();

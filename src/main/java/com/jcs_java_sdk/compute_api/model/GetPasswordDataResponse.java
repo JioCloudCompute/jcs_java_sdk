@@ -4,6 +4,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "GetPasswordDataResponse")
+
+	/// Class to handle Get Password Request's Response
+	/**
+	*/
 public class GetPasswordDataResponse {
 	
 	@XmlElement
@@ -14,15 +18,31 @@ public class GetPasswordDataResponse {
 	private String timeStamp;
 	@XmlElement
 	private String passwordData;
+	///Getter for the Request ID
+		/**
+			@return  String
+		*/
 	public final String getRequestId() {
 		return requestId;
 	}
+	///Getter for the Instance ID
+		/**
+			@return  String
+		*/
 	public final String getInstanceId() {
 		return instanceId;
 	}
+	///Getter for the time stamp
+		/**
+			@return  String
+		*/
 	public final String getTimeStamp() {
 		return timeStamp;
 	}
+	//Getter for the Password Data
+		/**
+			@return  String
+		*/
 	public final String getPasswordData() {
 		return passwordData;
 	}
@@ -35,7 +55,7 @@ public class GetPasswordDataResponse {
 	void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-	void setPasswordData(String passwordData) {
+	public void setPasswordData(String passwordData) {
 		this.passwordData = passwordData;
 	}
 	
