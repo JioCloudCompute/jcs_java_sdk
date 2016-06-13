@@ -1,6 +1,7 @@
 package com.jcs_java_sdk;
 
 import java.io.IOException;
+import java.security.Security;
 
 import com.jcs_java_sdk.compute_api.Image;
 import com.jcs_java_sdk.compute_api.Instance;
@@ -86,6 +87,7 @@ public class Compute
 	private Volume volume;
 	public Compute()
 	{
+//		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		info = new HttpVar();
 		image = new Image();
 		instance = new Instance();
@@ -105,6 +107,7 @@ public class Compute
 		info.verb = "GET";
 		info.headers = "";
 		info.version = "2016-03-01";
+		
 	}
 	public DescribeImagesResponse describeImages(DescribeImagesRequest req) 
 	{
@@ -192,7 +195,7 @@ public class Compute
 		if(response != null)
 		{
 			GetPasswordDataResponse res =  GetPasswordDataUnmarshaller.XMLObject(response);
-			res.setPasswordData((instance.decryptInstancePassword(res.getPasswordData(), "/home/gowtham/Desktop/reliance/pkcs8_key", "")));
+			res.setData((instance.decryptInstancePassword(res.getPasswordData(),req.getPrivateKeyFile(), req.getPassphrase())));
 			return res;
 		}
 		return null;

@@ -1,12 +1,10 @@
 package com.jcs_java_sdk.compute_api;
 
-import java.awt.RenderingHints.Key;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
+import java.security.interfaces.RSAPrivateKey;
 import java.util.TreeMap;
 
 import javax.crypto.BadPaddingException;
@@ -202,7 +200,7 @@ public class Instance
 	
 	public String decryptInstancePassword(String password, String privateKeyFile, String passphrase)
 	{
-		PrivateKey privateKey;
+		RSAPrivateKey privateKey;
 		
 		byte[] decodedPassword = null;
 		try {
@@ -214,11 +212,11 @@ public class Instance
 		
 		String decryptedMessage = null;
 		try {
-			privateKey = Utils.getPrivateKey(privateKeyFile);
+			privateKey = (RSAPrivateKey) Utils.readPrivateKey(privateKeyFile,passphrase);
+			System.out.println(privateKey.getModulus());
 			Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			decrypt.init(Cipher.DECRYPT_MODE, privateKey);
 			decryptedMessage = new String(decrypt.doFinal(decodedPassword), StandardCharsets.UTF_8);
-			System.out.println(decryptedMessage);
 			
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block

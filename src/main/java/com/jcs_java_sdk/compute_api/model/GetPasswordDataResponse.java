@@ -55,7 +55,11 @@ public class GetPasswordDataResponse {
 	void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-	public void setPasswordData(String passwordData) {
+	void setPasswordData(String passwordData) {
+		this.passwordData = passwordData;
+	}
+	
+	public void setData(String passwordData){
 		this.passwordData = passwordData;
 	}
 	
