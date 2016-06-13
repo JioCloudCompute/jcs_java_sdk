@@ -84,8 +84,6 @@ public class Compute
 	private KeyPair keyPair;
 	private Snapshot snapshot;
 	private Volume volume;
-	private Config config;
-	
 	public Compute()
 	{
 		info = new HttpVar();
@@ -96,11 +94,11 @@ public class Compute
 		volume = new Volume();
 		try 
 		{
-			config = new Config();
+			new Config();
 		} 
 		catch (IOException e) 
 		{
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		info.url = Config.getServiceUrl("compute");
