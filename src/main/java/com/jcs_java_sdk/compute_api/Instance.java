@@ -213,7 +213,6 @@ public class Instance
 		String decryptedMessage = null;
 		try {
 			privateKey = (RSAPrivateKey) Utils.readPrivateKey(privateKeyFile,passphrase);
-			System.out.println(privateKey.getModulus());
 			Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			decrypt.init(Cipher.DECRYPT_MODE, privateKey);
 			decryptedMessage = new String(decrypt.doFinal(decodedPassword), StandardCharsets.UTF_8);

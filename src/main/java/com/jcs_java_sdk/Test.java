@@ -428,7 +428,7 @@ public class Test {
 					GetPasswordDataRequest req22 = new GetPasswordDataRequest();
 					GetPasswordDataResponse res22;
 					req22.setInstanceId("i-4218c456");
-					req22.setPrivateKeyFile("/home/sswaroop/ssl.key");
+					req22.setPrivateKeyFile("/home/sswaroop/key.pem");
 					req22.setPassphrase("hello");
 					res22 = obj.getPasswordData(req22);
 					if(res22!=null){

@@ -46,23 +46,6 @@ public class Utils {
 		}		
 	}
 
-//	private static byte[] getKeyBytes(String filename)
-//	{
-//		byte[] keyBytes = null;
-//		try{	
-//			File f = new File(filename);
-//			FileInputStream fis = new FileInputStream(f);
-//			DataInputStream dis = new DataInputStream(fis);
-//			keyBytes = new byte[(int)f.length()];
-//			dis.readFully(keyBytes); 
-//			dis.close();
-//		}
-//		catch(Exception e){
-//			e.printStackTrace();
-//		}
-//
-//		return keyBytes;
-//	}
 	
 	
 	
@@ -89,32 +72,6 @@ public class Utils {
 	}
 	
 	
-//	public static PrivateKey getPrivateKey(String filename) {
-//
-//		byte[] keyBytes = getKeyBytes(filename);
-//
-//		
-//		String privateKey;
-//		try {
-//			privateKey = new String(keyBytes, "UTF-8");
-//			privateKey = privateKey.replaceAll("(-+BEGIN RSA PRIVATE KEY-+\\r?\\n|-+END RSA PRIVATE KEY-+\\r?\\n?)", "");
-//			keyBytes = DatatypeConverter.parseBase64Binary(privateKey);
-//			PKCS8EncodedKeySpec spec =new PKCS8EncodedKeySpec(keyBytes);
-//			KeyFactory kf = KeyFactory.getInstance("RSA");
-//			return kf.generatePrivate(spec);
-//		
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NoSuchAlgorithmException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (InvalidKeySpecException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 
 
 }

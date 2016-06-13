@@ -49,7 +49,6 @@ public class Requestify
 			{
 			    try 
 			    {
-			    	System.out.println(entry.getKey() +" " +entry.getValue());
 					requestString += entry.getKey() + "=" +  URLEncoder.encode(entry.getValue(), "UTF-8") + "&";
 				} 
 			    catch (UnsupportedEncodingException e) 
@@ -59,7 +58,6 @@ public class Requestify
 				}
 			}
 			requestString = requestString.substring(0, requestString.length()-1);
-			System.out.println(requestString);
 			return requester(requestString);
 		}
 		catch (IOException e) 
@@ -130,7 +128,6 @@ public class Requestify
 		
 		try (Scanner scanner = new Scanner(response)) {
 		    String responseBody = scanner.useDelimiter("\\A").next();
-		    System.out.println(responseBody);
 		    if(responseCode != 200)
 		    {
 		    	ErrorResponse.Error(responseBody);

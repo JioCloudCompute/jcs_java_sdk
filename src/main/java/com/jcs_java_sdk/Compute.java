@@ -87,7 +87,6 @@ public class Compute
 	private Volume volume;
 	public Compute()
 	{
-//		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		info = new HttpVar();
 		image = new Image();
 		instance = new Instance();

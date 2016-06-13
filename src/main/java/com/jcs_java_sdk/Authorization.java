@@ -94,8 +94,7 @@ public class Authorization
 		try {
 		     String secret = this.data.secretKey;
 		     String canonicalString = stringToSign(params);
-		     System.out.println(canonicalString);
-		     
+		     		     
 		     Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
 		     SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
 		     sha256_HMAC.init(secret_key);
@@ -103,7 +102,7 @@ public class Authorization
 		     @SuppressWarnings("restriction")
 			 String hmacSignature = DatatypeConverter.printBase64Binary(sha256_HMAC.doFinal(canonicalString.getBytes()));
 		     
-		     System.out.println(hmacSignature);
+		     
 		     params.put("Signature", hmacSignature);
 		    
 			}catch (Exception e)
