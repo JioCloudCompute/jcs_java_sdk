@@ -26,3 +26,5 @@ public class ShowDeleteOnTerminationFlagRequest
 	public void setVolumeId(String volumeId) {
 		this.volumeId = volumeId;
 	}
+	
+}

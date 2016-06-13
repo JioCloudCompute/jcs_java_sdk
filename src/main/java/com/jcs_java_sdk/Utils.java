@@ -8,6 +8,8 @@ import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.DatatypeConverter;
+
 public class Utils {
 	
 	public static String getProtocol(String url)
@@ -49,7 +51,12 @@ public class Utils {
 	    byte[] keyBytes = new byte[(int)f.length()];
 	    dis.readFully(keyBytes);
 	    dis.close();
-
+	    
+	    String privateKey = new String(keyBytes, "UTF-8");
+	    privateKey = privateKey.replaceAll("(-+BEGIN RSA PRIVATE KEY-+\\r?\\n|-+END RSA PRIVATE KEY-+\\r?\\n?)", "");
+	    
+	    keyBytes = DatatypeConverter.parseBase64Binary(privateKey);
+	    
 	    PKCS8EncodedKeySpec spec =
 	      new PKCS8EncodedKeySpec(keyBytes);
 	    KeyFactory kf = KeyFactory.getInstance("RSA");
