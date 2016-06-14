@@ -204,7 +204,7 @@ public class Instance
 		
 		byte[] decodedPassword = null;
 		try {
-			
+			System.out.println(new String(DatatypeConverter.parseBase64Binary(password), "UTF-8"));
 			decodedPassword = DatatypeConverter.parseBase64Binary(new String(DatatypeConverter.parseBase64Binary(password), "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
