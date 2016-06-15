@@ -57,7 +57,7 @@ public class Authorization
 	}
 	private String sortParams(TreeMap<String, String> params)
 	{	
-		String qs = new String();
+		StringBuilder qs = new StringBuilder();
 		//join the params using & delimiter
 		
 		for(Entry<String, String> entry: params.entrySet())
@@ -65,28 +65,28 @@ public class Authorization
 			//url and utf-8
 			try 
 			{
-				qs+=entry.getKey()+"="+URLEncoder.encode(entry.getValue(),"UTF-8")+"&";
+				qs.append(entry.getKey()+"="+URLEncoder.encode(entry.getValue(),"UTF-8")+"&");
 			} catch (UnsupportedEncodingException e) 
 			{	
 				e.printStackTrace();
 			}		
 		}
-		qs=qs.substring(0,qs.length()-1);
 		
-		return qs;
+		
+		return qs.substring(0,qs.length()-1);
 	}
 	
 	private String stringToSign(TreeMap<String, String> params)
 	{
-		String ss = this.data.verb + "\n" + this.data.host;
+		StringBuilder ss = new StringBuilder(data.verb + "\n" + this.data.host);
 		if(!this.data.port.equals("None"))
 		{
-			ss=ss+ this.data.port;
+			ss.append(this.data.port);
 		}
-		ss=ss+"\n"+ this.data.path + "\n";
+		ss.append("\n"+ this.data.path + "\n");
 		this.addParams(params);
-		ss= ss+ sortParams(params);
-		return ss;
+		ss.append(sortParams(params));
+		return ss.toString();
 	}
 	
 	public void addAuthorization(TreeMap<String, String> params)

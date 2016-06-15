@@ -39,14 +39,14 @@ public class Requestify
 		
 		Authorization authObject = new Authorization(authData);
 		authObject.addAuthorization(params);
-		String requestString = new String(info.url);
-		requestString += "/?";
+		StringBuilder requestString = new StringBuilder(info.url);
+		requestString.append("/?");
 		
 		for (Map.Entry<String, String> entry : params.entrySet())
 		{
 		    try 
 		    {
-				requestString += entry.getKey() + "=" +  URLEncoder.encode(entry.getValue(), "UTF-8") + "&";
+				requestString.append(entry.getKey() + "=").append(URLEncoder.encode(entry.getValue(), "UTF-8") + "&");
 			} 
 		    catch (UnsupportedEncodingException e) 
 		    {
@@ -54,9 +54,7 @@ public class Requestify
 				e.printStackTrace();
 			}
 		}
-		requestString = requestString.substring(0, requestString.length()-1);
-		return requester(requestString);
-
+		return requester(requestString.substring(0, requestString.length()-1));
 	}
 	
 	private static String requester (String requestString )
