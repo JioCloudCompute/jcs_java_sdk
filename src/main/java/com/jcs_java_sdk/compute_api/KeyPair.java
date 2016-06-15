@@ -12,7 +12,7 @@ public class KeyPair
 {
 	public String describeKeyPairs(HttpVar info)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DescribeKeyPairs");
 		params.put("Version", info.version);
 		
@@ -21,7 +21,7 @@ public class KeyPair
 	
 	public String createKeyPair(HttpVar info, CreateKeyPairRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "CreateKeyPair");
 		params.put("Version", info.version);
 		
@@ -38,7 +38,7 @@ public class KeyPair
 	
 	public String deleteKeyPair(HttpVar info, DeleteKeyPairRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DeleteKeyPair");
 		params.put("Version", info.version);
 		
@@ -55,7 +55,7 @@ public class KeyPair
 
 	public String importKeyPair(HttpVar info, ImportKeyPairRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "ImportKeyPair");
 		params.put("Version", info.version);
 		

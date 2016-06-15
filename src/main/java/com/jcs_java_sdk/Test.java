@@ -2,7 +2,6 @@ package com.jcs_java_sdk;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,7 +63,7 @@ public class Test {
 
 	private static Scanner scanner;
 
-	public static void main(String[] args) throws UnsupportedEncodingException, FileNotFoundException 
+	public static void main(String[] args)
 	{	
 		Compute obj = new Compute();
 		ArrayList<String> imageIds = new ArrayList<String>();
@@ -428,7 +427,7 @@ public class Test {
 					GetPasswordDataRequest req22 = new GetPasswordDataRequest();
 					GetPasswordDataResponse res22;
 					req22.setInstanceId("i-4218c456");
-					req22.setPrivateKeyFile("/home/sswaroop/key.pem");
+					req22.setPrivateKeyFile("/home/gowtham/Desktop/reliance/key.pem");
 					req22.setPassphrase("hello");
 					res22 = obj.getPasswordData(req22);
 					if(res22!=null){

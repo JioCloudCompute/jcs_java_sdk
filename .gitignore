@@ -1,3 +1,4 @@
 target/
 src/main/java/com/jcs_java_sdk/key.pem
 src/main/java/com/jcs_java_sdk/key.pub
+*pem

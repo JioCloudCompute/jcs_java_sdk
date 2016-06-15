@@ -99,7 +99,6 @@ public class Compute
 		} 
 		catch (IOException e) 
 		{
-		
 			e.printStackTrace();
 		}
 		info.url = Config.getServiceUrl("compute");

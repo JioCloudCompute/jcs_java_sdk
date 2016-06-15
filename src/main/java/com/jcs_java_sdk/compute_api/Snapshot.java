@@ -12,7 +12,7 @@ public class Snapshot
 {
 	public String describeSnapshots(HttpVar info, DescribeSnapshotsRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DescribeSnapshots");
 		params.put("Version", info.version);
 		
@@ -43,7 +43,7 @@ public class Snapshot
 	
 	public String createSnapshot(HttpVar info, CreateSnapshotRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "CreateSnapshot");
 		params.put("Version", info.version);
 		
@@ -60,7 +60,7 @@ public class Snapshot
 	
 	public String deleteSnapshot(HttpVar info, DeleteSnapshotRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DeleteSnapshot");
 		params.put("Version", info.version);
 		

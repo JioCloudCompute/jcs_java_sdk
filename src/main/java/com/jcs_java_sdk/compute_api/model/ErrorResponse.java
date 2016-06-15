@@ -32,7 +32,10 @@ public class ErrorResponse {
 				Ch= Ch.getNextSibling();
 				System.out.println(Ch.getTextContent());
 				
-			} catch (SAXException | IOException e) {
+			} catch (SAXException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

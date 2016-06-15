@@ -1,5 +1,6 @@
 package com.jcs_java_sdk.compute_api;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
@@ -29,7 +30,7 @@ public class Instance
 {
 	public String describeInstances(HttpVar info, DescribeInstancesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DescribeInstances");
 		params.put("Version", info.version);
 		
@@ -43,7 +44,7 @@ public class Instance
 	
 	public String describeInstanceTypes(HttpVar info, DescribeInstanceTypesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DescribeInstanceTypes");
 		params.put("Version", info.version);
 		
@@ -57,7 +58,7 @@ public class Instance
 	
 	public String startInstances(HttpVar info, StartInstancesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "StartInstances");
 		params.put("Version", info.version);
 		if(req.getInstanceIds().size() == 0)
@@ -77,7 +78,7 @@ public class Instance
 	
 	public String stopInstances(HttpVar info, StopInstancesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "StopInstances");
 		params.put("Version", info.version);
 		
@@ -98,7 +99,7 @@ public class Instance
 	
 	public String rebootInstances(HttpVar info, RebootInstancesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "RebootInstances");
 		params.put("Version", info.version);
 		
@@ -119,7 +120,7 @@ public class Instance
 	
 	public String terminateInstances(HttpVar info, TerminateInstancesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "TerminateInstances");
 		params.put("Version", info.version);
 		
@@ -140,7 +141,7 @@ public class Instance
 	
 	public String runInstances(HttpVar info, RunInstancesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "RunInstances");
 		params.put("Version", info.version);
 		
@@ -203,21 +204,27 @@ public class Instance
 		RSAPrivateKey privateKey;
 		
 		byte[] decodedPassword = null;
-		try {
-			System.out.println(new String(DatatypeConverter.parseBase64Binary(password), "UTF-8"));
-			decodedPassword = DatatypeConverter.parseBase64Binary(new String(DatatypeConverter.parseBase64Binary(password), "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		
 		String decryptedMessage = null;
-		try {
+		try 
+		{
+			decodedPassword = DatatypeConverter.parseBase64Binary(new String(DatatypeConverter.parseBase64Binary(password), "UTF-8"));
+
+			
+
 			privateKey = (RSAPrivateKey) Utils.readPrivateKey(privateKeyFile,passphrase);
 			Cipher decrypt=Cipher.getInstance("RSA/ECB/PKCS1Padding");
 			decrypt.init(Cipher.DECRYPT_MODE, privateKey);
 			decryptedMessage = new String(decrypt.doFinal(decodedPassword), StandardCharsets.UTF_8);
 			
-		} catch (InvalidKeyException e) {
+		} 
+		catch (InvalidKeyException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
@@ -232,11 +239,7 @@ public class Instance
 		} catch (BadPaddingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
 		
 		return decryptedMessage;
 		
@@ -244,7 +247,7 @@ public class Instance
 	
 	public String getPasswordData(HttpVar info, GetPasswordDataRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "GetPasswordData");
 		params.put("Version", info.version);
 		

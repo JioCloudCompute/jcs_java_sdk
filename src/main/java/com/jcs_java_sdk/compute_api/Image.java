@@ -10,7 +10,7 @@ public class Image
 {
 	public String describeImages(HttpVar info, DescribeImagesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DescribeImages");
 		params.put("Version", info.version);
 		for(int i=0 ;  i<req.getImageIds().size() ; i++)

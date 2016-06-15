@@ -16,7 +16,7 @@ public class Volume
 {
 	public String describeVolumes(HttpVar info, DescribeVolumesRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DescribeVolumes");
 		params.put("Version", info.version);
 		
@@ -47,7 +47,7 @@ public class Volume
 	
 	public String createVolume(HttpVar info, CreateVolumeRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "CreateVolume");
 		params.put("Version", info.version);
 		
@@ -69,7 +69,7 @@ public class Volume
 	
 	public String deleteVolume(HttpVar info, DeleteVolumeRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DeleteVolume");
 		params.put("Version", info.version);
 		
@@ -87,7 +87,7 @@ public class Volume
 	
 	public String attachVolume(HttpVar info, AttachVolumeRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "AttachVolume");
 		params.put("Version", info.version);
 		System.out.println("ac");
@@ -122,7 +122,7 @@ public class Volume
 	
 	public String detachVolume(HttpVar info, DetachVolumeRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "DetachVolume");
 		params.put("Version", info.version);
 
@@ -143,7 +143,7 @@ public class Volume
 
 	public String showDeleteOnTerminationFlag(HttpVar info, ShowDeleteOnTerminationFlagRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "ShowDeleteOnTerminationFlag");
 		params.put("Version", info.version);
 		
@@ -160,7 +160,7 @@ public class Volume
 	
 	public String updateDeleteOnTerminationFlag(HttpVar info, UpdateDeleteOnTerminationFlagRequest req)
 	{
-		TreeMap<String, String>params = new TreeMap<>();
+		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put("Action", "UpdateDeleteOnTerminationFlag");
 		params.put("Version", info.version);
 		

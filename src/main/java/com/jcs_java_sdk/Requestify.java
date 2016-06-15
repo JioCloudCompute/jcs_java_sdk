@@ -3,7 +3,6 @@ package com.jcs_java_sdk;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;
@@ -27,59 +26,40 @@ public class Requestify
 	public static String makeRequest(HttpVar info, TreeMap<String, String>params) 
 	{
 		AuthVar authData = new AuthVar();
-		try 
+		authData.url = info.url;
+		authData.verb = info.verb;
+		authData.headers = info.headers;
+		authData.accessKey = Config.getAccessKey();
+		authData.secretKey = Config.getSecretKey();
+		authData.path = "";
+		if(info.url.endsWith("/"))
 		{
-			authData.url = info.url;
-			authData.verb = info.verb;
-			authData.headers = info.headers;
-			authData.accessKey = Config.getAccessKey();
-			authData.secretKey = Config.getSecretKey();
-			authData.path = "";
-			if(info.url.endsWith("/"))
-			{
-				info.url = info.url.substring(0,info.url.length()-1);
-			}
-			
-			Authorization authObject = new Authorization(authData);
-			authObject.addAuthorization(params);
-			String requestString = new String(info.url);
-			requestString += "/?";
-			
-			for (Map.Entry<String, String> entry : params.entrySet())
-			{
-			    try 
-			    {
-					requestString += entry.getKey() + "=" +  URLEncoder.encode(entry.getValue(), "UTF-8") + "&";
-				} 
-			    catch (UnsupportedEncodingException e) 
-			    {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			requestString = requestString.substring(0, requestString.length()-1);
-			return requester(requestString);
+			info.url = info.url.substring(0,info.url.length()-1);
 		}
-		catch (IOException e) 
+		
+		Authorization authObject = new Authorization(authData);
+		authObject.addAuthorization(params);
+		String requestString = new String(info.url);
+		requestString += "/?";
+		
+		for (Map.Entry<String, String> entry : params.entrySet())
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		catch (KeyManagementException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		catch (NoSuchAlgorithmException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    try 
+		    {
+				requestString += entry.getKey() + "=" +  URLEncoder.encode(entry.getValue(), "UTF-8") + "&";
+			} 
+		    catch (UnsupportedEncodingException e) 
+		    {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return null;
+		requestString = requestString.substring(0, requestString.length()-1);
+		return requester(requestString);
 
 	}
 	
-	private static String requester (String requestString ) throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException
+	private static String requester (String requestString )
 	{
 	       // Create a trust manager that does not validate certificate chains
 		if(!Config.isSecure())
@@ -101,39 +81,69 @@ public class Requestify
 	        };
 	 
 	        // Install the all-trusting trust manager
-		        SSLContext sc = SSLContext.getInstance("SSL");
-		        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-		        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		        SSLContext sc;
+			try 
+			{
+				sc = SSLContext.getInstance("SSL");
+				sc.init(null, trustAllCerts, new java.security.SecureRandom());
+				HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+			} 
+			catch (NoSuchAlgorithmException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (KeyManagementException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		        
+		        
 		 
 		        // Create all-trusting host name verifier
-		        HostnameVerifier allHostsValid = new HostnameVerifier() 
-		        {
-		            public boolean verify(String hostname, SSLSession session) 
-		            {
-		                return true;
-		            }
+	        HostnameVerifier allHostsValid = new HostnameVerifier() 
+	        {
+	            public boolean verify(String hostname, SSLSession session) 
+	            {
+	                return true;
+	            }
 	        };
 		}
         
-		HttpsURLConnection connection = (HttpsURLConnection) new URL(requestString).openConnection();
-		connection.setRequestProperty("Accept-Charset", "UTF-8");
-		int responseCode = connection.getResponseCode();
-		InputStream response;  
-		if(responseCode == 200){
-			response = connection.getInputStream();
-		}
-		else{
-			response = connection.getErrorStream();
-		}
+		HttpsURLConnection connection;
+		InputStream response = null;
+		int responseCode = 0;
 		
-		try (Scanner scanner = new Scanner(response)) {
+		try 
+		{
+			connection = (HttpsURLConnection) new URL(requestString).openConnection();
+			connection.setRequestProperty("Accept-Charset", "UTF-8");
+			responseCode = connection.getResponseCode();
+			  
+			if(responseCode == 200)
+			{
+				response = connection.getInputStream();
+			}
+			else
+			{
+				response = connection.getErrorStream();
+			}
+
+		}
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+			Scanner scanner = new Scanner(response);
 		    String responseBody = scanner.useDelimiter("\\A").next();
 		    if(responseCode != 200)
 		    {
 		    	ErrorResponse.Error(responseBody);
+		    	scanner.close();
 		    	return null;
 		    }
+		    scanner.close();
 		    return responseBody;
-		}
 	}
 }
