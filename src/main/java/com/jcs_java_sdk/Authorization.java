@@ -24,6 +24,8 @@ package com.jcs_java_sdk;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map.Entry;
@@ -113,24 +115,34 @@ public class Authorization
 	
 	public void addAuthorization(TreeMap<String, String> params)
 	{
-		try {
-		     String secret = this.data.secretKey;
-		     String canonicalString = stringToSign(params);
+		    String secret = this.data.secretKey;
+		    String canonicalString = stringToSign(params);
 		     		     
-		     Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-		     SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
-		     sha256_HMAC.init(secret_key);
-		     
-		     @SuppressWarnings("restriction")
-			 String hmacSignature = DatatypeConverter.printBase64Binary(sha256_HMAC.doFinal(canonicalString.getBytes()));
-		     
-		     
-		     params.put("Signature", hmacSignature);
-		    
-			}catch (Exception e)
+		    Mac sha256_HMAC;
+			try 
 			{
-		     System.out.println("Error");
-		    }
+				sha256_HMAC = Mac.getInstance("HmacSHA256");
+				 SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+			     sha256_HMAC.init(secret_key);
+			     
+			     @SuppressWarnings("restriction")
+				 String hmacSignature = DatatypeConverter.printBase64Binary(sha256_HMAC.doFinal(canonicalString.getBytes()));
+			     
+			     
+			     params.put("Signature", hmacSignature);
+			}
+			catch (NoSuchAlgorithmException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			catch (InvalidKeyException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    		    
+
 	}
 
 }
