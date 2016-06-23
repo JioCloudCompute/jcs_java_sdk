@@ -20,7 +20,6 @@ EXTERNAL_ROOT=$(PROJECT_ROOT)/external
 SRCDIR = $(PROJECT_ROOT)/src/main/java/
 TARGETDIR = $(PROJECT_ROOT)/target/classes/
 DOCDIR = $(PROJECT_ROOT)/doc
-BINDIR = $(PROJECT_ROOT)/bin
 
 # Library Paths
 LIBPATH = ./lib
@@ -52,14 +51,13 @@ CLASSES = $(SRCS:./src/main/java/%.java=./target/classes/%.class)
 
 .PHONY: all setup doc clean distclean install
 
-all: setup $(BINDIR)/$(TARGET) 
+all: setup ./target/$(TARGET) 
 
 setup:
 	@$(ECHO) "Setting up compilation..."
-	@mkdir -p bin
 	@mkdir -p $(TARGETDIR)
 	
-$(BINDIR)/$(TARGET): $(CLASSES)
+./target/$(TARGET): $(CLASSES)
 	@$(PRINTF) "$(MESG_COLOR)Building JAR:"
 	@$(PRINTF) "$(FILE_COLOR)"
 	@cd $(TARGETDIR); \
@@ -97,8 +95,8 @@ doc:
 
 clean:
 	@$(ECHO) -n "Cleaning up..."
-	@$(RM) -rf ./target
+	@$(RM) -rf $(TARGETDIR)
 	@$(ECHO) "Done"
 
 distclean: clean
-	@$(RM) -rf $(BINDIR) $(DOCDIR)
+	@$(RM) -rf $(DOCDIR) ./target
