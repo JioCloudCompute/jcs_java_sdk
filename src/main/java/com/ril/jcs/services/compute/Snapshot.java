@@ -26,13 +26,14 @@ import java.util.TreeMap;
 
 import com.ril.jcs.services.HttpVar;
 import com.ril.jcs.services.Requestify;
+import com.ril.jcs.services.compute.exception.ComputeClientException;
 import com.ril.jcs.services.compute.model.CreateSnapshotRequest;
 import com.ril.jcs.services.compute.model.DeleteSnapshotRequest;
 import com.ril.jcs.services.compute.model.DescribeSnapshotsRequest;
 
 public class Snapshot 
 {
-	public String describeSnapshots(HttpVar info, DescribeSnapshotsRequest req)
+	public String describeSnapshots(HttpVar info, DescribeSnapshotsRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DESCRIBE_SNAPSHOTS);
@@ -63,7 +64,7 @@ public class Snapshot
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String createSnapshot(HttpVar info, CreateSnapshotRequest req)
+	public String createSnapshot(HttpVar info, CreateSnapshotRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.CREATE_SNAPSHOT);
@@ -80,7 +81,7 @@ public class Snapshot
 		return Requestify.makeRequest(info, params);		
 	}
 	
-	public String deleteSnapshot(HttpVar info, DeleteSnapshotRequest req)
+	public String deleteSnapshot(HttpVar info, DeleteSnapshotRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DELETE_SNAPSHOT);

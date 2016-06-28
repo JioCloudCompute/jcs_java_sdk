@@ -28,10 +28,11 @@ import com.ril.jcs.services.HttpVar;
 import com.ril.jcs.services.Requestify;
 import com.ril.jcs.services.compute.model.DescribeImagesRequest;
 import com.ril.jcs.services.compute.Constants;
+import com.ril.jcs.services.compute.exception.ComputeClientException;
 
 public class Image 
 {
-	public String describeImages(HttpVar info, DescribeImagesRequest req)
+	public String describeImages(HttpVar info, DescribeImagesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DESCRIBE_IMAGES);

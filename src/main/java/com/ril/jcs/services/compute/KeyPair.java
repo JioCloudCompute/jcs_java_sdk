@@ -26,13 +26,14 @@ import java.util.TreeMap;
 
 import com.ril.jcs.services.HttpVar;
 import com.ril.jcs.services.Requestify;
+import com.ril.jcs.services.compute.exception.ComputeClientException;
 import com.ril.jcs.services.compute.model.CreateKeyPairRequest;
 import com.ril.jcs.services.compute.model.DeleteKeyPairRequest;
 import com.ril.jcs.services.compute.model.ImportKeyPairRequest;
 
 public class KeyPair 
 {
-	public String describeKeyPairs(HttpVar info)
+	public String describeKeyPairs(HttpVar info) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DESCRIBE_KEY_PAIRS);
@@ -41,7 +42,7 @@ public class KeyPair
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String createKeyPair(HttpVar info, CreateKeyPairRequest req)
+	public String createKeyPair(HttpVar info, CreateKeyPairRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.CREATE_KEY_PAIR);
@@ -58,7 +59,7 @@ public class KeyPair
 		return Requestify.makeRequest(info, params);		
 	}
 	
-	public String deleteKeyPair(HttpVar info, DeleteKeyPairRequest req)
+	public String deleteKeyPair(HttpVar info, DeleteKeyPairRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DELETE_KEY_PAIR);
@@ -75,7 +76,7 @@ public class KeyPair
 		return Requestify.makeRequest(info, params);		
 	}
 
-	public String importKeyPair(HttpVar info, ImportKeyPairRequest req)
+	public String importKeyPair(HttpVar info, ImportKeyPairRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.IMPORT_KEY_PAIR);

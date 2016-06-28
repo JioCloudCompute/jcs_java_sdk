@@ -41,11 +41,16 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import com.ril.jcs.services.compute.exception.BadRequestException;
+import com.ril.jcs.services.compute.exception.ComputeClientException;
+import com.ril.jcs.services.compute.exception.EntityAlreadyExistsException;
+import com.ril.jcs.services.compute.exception.EntityDoesNotExistsException;
+import com.ril.jcs.services.compute.exception.NotAuthorizedException;
 import com.ril.jcs.services.compute.model.ErrorResponse;
 
 public class Requestify 
 {
-	public static String makeRequest(HttpVar info, TreeMap<String, String>params) 
+	public static String makeRequest(HttpVar info, TreeMap<String, String>params) throws ComputeClientException 
 	{
 		AuthVar.url = info.url;
 		AuthVar.verb = info.verb;
@@ -128,7 +133,7 @@ public class Requestify
 
 
 
-	private static String requester (String requestString)
+	private static String requester (String requestString) throws ComputeClientException
 	{
 		// Create a trust manager that does not validate certificate chains
 		if(!Config.isSecure())
@@ -169,7 +174,22 @@ public class Requestify
 		{
 			ErrorResponse.Error(responseBody);
 			scanner.close();
-			return null;
+			if (responseCode == 400) {
+				throw new BadRequestException("hello");
+			} 
+			else if (responseCode == 403) {
+				throw new NotAuthorizedException("hello");
+			} 
+			else if (responseCode == 404) {
+				throw new EntityDoesNotExistsException("hello");
+			} 
+			else if (responseCode == 409) {
+				throw new EntityAlreadyExistsException("hello");
+			} 
+			else {
+				throw new ComputeClientException("hello");
+			}
+//			return null;
 		}
 		if(scanner != null){
 			scanner.close();
