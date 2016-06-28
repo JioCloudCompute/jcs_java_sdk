@@ -28,6 +28,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.xml.sax.XMLReader;
+
 import com.ril.jcs.services.compute.model.AttachVolumeResponse;;
 
 public class AttachVolumeUnmarshaller {
