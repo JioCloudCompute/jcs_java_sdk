@@ -27,7 +27,13 @@ import java.io.StringReader;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.Source;
+import javax.xml.transform.sax.SAXSource;
 
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import com.ril.jcs.services.compute.model.AttachVolumeResponse;;
@@ -40,11 +46,23 @@ public class AttachVolumeUnmarshaller {
 		try {
 			jaxbContext = JAXBContext.newInstance(AttachVolumeResponse.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			AttachVolumeResponse res = (AttachVolumeResponse) jaxbUnmarshaller.unmarshal(new StringReader(xmlDoc));
-			return res;
+			//Filter Namespace
+			final SAXParserFactory sax = SAXParserFactory.newInstance();
+			sax.setNamespaceAware(false);
+			final XMLReader reader = sax.newSAXParser().getXMLReader();
+			final Source er = new SAXSource(reader, new InputSource(new StringReader(xmlDoc)));
+			
+			return (AttachVolumeResponse) jaxbUnmarshaller.unmarshal(er);
+			
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			System.out.println("JAXB Error");
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 		

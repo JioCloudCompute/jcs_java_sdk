@@ -47,7 +47,7 @@ public class DescribeImagesUnmarshaller {
 		try {
 			jaxbContext = JAXBContext.newInstance(DescribeImagesResponse.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			//Remove Namespace
+			//Filter Namespace
 			final SAXParserFactory sax = SAXParserFactory.newInstance();
 			sax.setNamespaceAware(false);
 			final XMLReader reader = sax.newSAXParser().getXMLReader();
