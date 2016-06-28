@@ -21,7 +21,7 @@
       <configuration>
         <archive>
           <manifest>
-            <mainClass>com.jcs_java_sdk.Test</mainClass>
+            <mainClass>com.ril.jcs.services.Test</mainClass>
           </manifest>
         </archive>
         <descriptorRefs>
