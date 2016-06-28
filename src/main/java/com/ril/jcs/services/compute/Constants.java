@@ -61,16 +61,24 @@ public class Constants {
 	public static final String UPDATE_DELETE_ON_TERMINATION_FLAG = "UpdateDeleteOnTermination";
 	
 	public static final String IMAGE_ID = "ImageId";
-	public static final String IMAGE_IDS = "ImageIds";
 	public static final String INSTANCE_ID = "InstanceId";
-	public static final String INSTANCE_IDS = "InstanceIds";
 	public static final String INSTANCE_TYPE_ID = "InstanceTypeId";
-	public static final String INSTANCE_TYPE_IDS = "InstanceTypeIds";
 	public static final String VOLUME_ID = "VolumeId";
 	public static final String SNAPSHOT_ID = "SnapshotId";
 	public static final String MAX_RESULTS = "MaxResults";
-	
-	
-	
+	public static final String NEXT_TOKEN = "NextToken";
+	public static final String DETAIL = "Detail";
+	public static final String SIZE = "Size";
+	public static final String DEVICE = "Device";
+	public static final String DELETE_ON_TERMINATION = "DeleteOnTermination";
+	public static final String KEY_NAME = "KeyName";
+	public static final String PUBLIC_KEY_MATERIAL = "PublicKeyMaterial";
+	public static final String DEVICE_NAME = "DeviceName";
+	public static final String VOLUME_SIZE = "VolumeSize";
+	public static final String BLOCK_DEVICE_MAPPING = "BlockDeviceMapping";
+	public static final String INSTANCE_COUNT = "InstanceCount";
+	public static final String SUBNET_ID = "SubnetId";
+	public static final String PRIVATE_IP_ADDRESS= "PrivateIpAddress";
+	public static final String SECURITY_GROUP_ID = "SecurityGroupId";	
 	
 }

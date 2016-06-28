@@ -48,17 +48,17 @@ public class Snapshot
 		
 		if(req.getMaxResults() != -1)	
 		{
-			params.put("MaxResults", Integer.toString(req.getMaxResults()));
+			params.put(Constants.MAX_RESULTS, Integer.toString(req.getMaxResults()));
 		}
 
 		if(req.getNextToken().length() != 0)
 		{
-			params.put("NextToken", req.getNextToken());
+			params.put(Constants.NEXT_TOKEN, req.getNextToken());
 		}
 		
 		if(!req.isDetail())
 		{
-			params.put("Detail", Boolean.toString(req.isDetail()));
+			params.put(Constants.DETAIL, Boolean.toString(req.isDetail()));
 		}
 		return Requestify.makeRequest(info, params);
 	}
@@ -66,7 +66,7 @@ public class Snapshot
 	public String createSnapshot(HttpVar info, CreateSnapshotRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put(Constants.ACTION, "CreateSnapshot");
+		params.put(Constants.ACTION, Constants.CREATE_SNAPSHOT);
 		params.put(Constants.VERSION, info.version);
 		
 		if(req.getVolumeId().length() == 0)
@@ -75,7 +75,7 @@ public class Snapshot
 		}
 		else
 		{
-			params.put("VolumeId", req.getVolumeId());
+			params.put(Constants.VOLUME_ID, req.getVolumeId());
 		}
 		return Requestify.makeRequest(info, params);		
 	}
@@ -83,7 +83,7 @@ public class Snapshot
 	public String deleteSnapshot(HttpVar info, DeleteSnapshotRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put(Constants.ACTION, "DeleteSnapshot");
+		params.put(Constants.ACTION, Constants.DELETE_SNAPSHOT);
 		params.put(Constants.VERSION, info.version);
 		
 		if(req.getSnapshotId().length() == 0)
@@ -92,7 +92,7 @@ public class Snapshot
 		}
 		else
 		{
-			params.put("SnapshotId", req.getSnapshotId());
+			params.put(Constants.SNAPSHOT_ID, req.getSnapshotId());
 		}
 		return Requestify.makeRequest(info, params);		
 	}

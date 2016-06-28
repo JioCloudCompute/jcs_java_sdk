@@ -53,12 +53,12 @@ public class Instance
 	public String describeInstances(HttpVar info, DescribeInstancesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "DescribeInstances");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.DESCRIBE_INSTANCES);
+		params.put(Constants.VERSION, info.version);
 		
 		for(int i=0 ;  i<req.getInstanceIds().size() ; i++)
 		{
-			params.put("InstanceId." + Integer.toString(i+1), req.getInstanceIds().get(i));
+			params.put(Constants.INSTANCE_ID + "." + Integer.toString(i+1), req.getInstanceIds().get(i));
 		}
 		
 		return Requestify.makeRequest(info, params);
@@ -67,12 +67,12 @@ public class Instance
 	public String describeInstanceTypes(HttpVar info, DescribeInstanceTypesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "DescribeInstanceTypes");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.DESCRIBE_INSTANCE_TYPES);
+		params.put(Constants.VERSION, info.version);
 		
 		for(int i=0 ;  i<req.getInstanceTypeIds().size() ; i++)
 		{
-			params.put("InstanceTypeId." + Integer.toString(i+1), req.getInstanceTypeIds().get(i));
+			params.put( Constants.INSTANCE_TYPE_ID + "." + Integer.toString(i+1), req.getInstanceTypeIds().get(i));
 		}
 		
 		return Requestify.makeRequest(info, params);
@@ -81,8 +81,8 @@ public class Instance
 	public String startInstances(HttpVar info, StartInstancesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "StartInstances");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.START_INSTANCES);
+		params.put(Constants.VERSION, info.version);
 		if(req.getInstanceIds().size() == 0)
 		{
 			System.out.println("Error : Instance-Id needed");
@@ -91,7 +91,7 @@ public class Instance
 		{
 			for(int i=0 ;  i<req.getInstanceIds().size() ; i++)
 			{
-				params.put("InstanceId." + Integer.toString(i+1), req.getInstanceIds().get(i));
+				params.put(Constants.INSTANCE_ID + "." + Integer.toString(i+1), req.getInstanceIds().get(i));
 			}
 		}
 		
@@ -101,8 +101,8 @@ public class Instance
 	public String stopInstances(HttpVar info, StopInstancesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "StopInstances");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.STOP_INSTANCES);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getInstanceIds().size() == 0)
 		{
@@ -112,7 +112,7 @@ public class Instance
 		{
 			for(int i=0 ;  i<req.getInstanceIds().size() ; i++)
 			{
-				params.put("InstanceId." + Integer.toString(i+1), req.getInstanceIds().get(i));
+				params.put(Constants.INSTANCE_ID + "." + Integer.toString(i+1), req.getInstanceIds().get(i));
 			}
 		}
 		
@@ -122,8 +122,8 @@ public class Instance
 	public String rebootInstances(HttpVar info, RebootInstancesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "RebootInstances");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.REBOOT_INSTANCES);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getInstanceIds().size() == 0)
 		{
@@ -133,7 +133,7 @@ public class Instance
 		{
 			for(int i=0 ;  i<req.getInstanceIds().size() ; i++)
 			{
-				params.put("InstanceId." + Integer.toString(i+1), req.getInstanceIds().get(i));
+				params.put(Constants.INSTANCE_ID + "." + Integer.toString(i+1), req.getInstanceIds().get(i));
 			}
 		}
 		
@@ -143,8 +143,8 @@ public class Instance
 	public String terminateInstances(HttpVar info, TerminateInstancesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "TerminateInstances");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.TERMINATE_INSTANCES);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getInstanceIds().size() == 0)
 		{
@@ -154,7 +154,7 @@ public class Instance
 		{
 			for(int i=0 ;  i<req.getInstanceIds().size() ; i++)
 			{
-				params.put("InstanceId." + Integer.toString(i+1), req.getInstanceIds().get(i));
+				params.put(Constants.INSTANCE_ID + "." + Integer.toString(i+1), req.getInstanceIds().get(i));
 			}
 		}
 		
@@ -164,8 +164,8 @@ public class Instance
 	public String runInstances(HttpVar info, RunInstancesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "RunInstances");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.RUN_INSTANCES);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getImageId().length() == 0)
 		{
@@ -173,7 +173,7 @@ public class Instance
 		}
 		else
 		{
-			params.put("ImageId", req.getImageId());
+			params.put(Constants.IMAGE_ID, req.getImageId());
 		}
 
 		if(req.getInstanceTypeId().length() == 0)
@@ -182,40 +182,40 @@ public class Instance
 		}
 		else
 		{
-			params.put("InstanceTypeId", req.getInstanceTypeId());
+			params.put(Constants.INSTANCE_TYPE_ID, req.getInstanceTypeId());
 		}
 		if(req.getBlockDeviceMapping().size() != 0)
 		{
 			for(int i=0 ; i<req.getBlockDeviceMapping().size() ; i++)
 			{
-				params.put("BlockDeviceMapping." + Integer.toString(i+1) + ".DeviceName", req.getBlockDeviceMapping().get(i).deviceName);
-				params.put("BlockDeviceMapping." + Integer.toString(i+1) + ".DeleteOnTermination", Boolean.toString(req.getBlockDeviceMapping().get(i).deleteOnTermination));
-				params.put("BlockDeviceMapping." + Integer.toString(i+1) + ".VolumeSize", Double.toString(req.getBlockDeviceMapping().get(i).volumeSize));
+				params.put(Constants.BLOCK_DEVICE_MAPPING +  "." + Integer.toString(i+1) + "." + Constants.DEVICE_NAME, req.getBlockDeviceMapping().get(i).deviceName);
+				params.put(Constants.BLOCK_DEVICE_MAPPING +  "." + Integer.toString(i+1) + "." + Constants.DELETE_ON_TERMINATION, Boolean.toString(req.getBlockDeviceMapping().get(i).deleteOnTermination));
+				params.put(Constants.BLOCK_DEVICE_MAPPING +  "." + Integer.toString(i+1) + "." + Constants.VOLUME_SIZE, Double.toString(req.getBlockDeviceMapping().get(i).volumeSize));
 			}
 		}
 		if(req.getInstanceCount() != -1)
 		{
-			params.put("InstanceCount", Integer.toString(req.getInstanceCount()));
+			params.put(Constants.INSTANCE_COUNT, Integer.toString(req.getInstanceCount()));
 		}
 		if(req.getSubnetId().length()!=0)
 		{
-			params.put("SubnetId", req.getSubnetId());
+			params.put(Constants.SUBNET_ID, req.getSubnetId());
 		}
 		if(req.getPrivateIpAddress().length()!=0)
 		{
-			params.put("PrivateIpAddress", req.getPrivateIpAddress());
+			params.put(Constants.PRIVATE_IP_ADDRESS, req.getPrivateIpAddress());
 		}
 		if(!req.getSecurityGroupIds().isEmpty())
 		{
 			for(int i=0 ;  i<req.getSecurityGroupIds().size() ; i++)
 			{
-				params.put("SecurityGroupId." + Integer.toString(i+1), req.getSecurityGroupIds().get(i));
+				params.put(Constants.SECURITY_GROUP_ID + "." + Integer.toString(i+1), req.getSecurityGroupIds().get(i));
 			}
 		}
 		
 		if(req.getKeyName().length()!=0)
 		{
-			params.put("KeyName", req.getKeyName());
+			params.put(Constants.KEY_NAME, req.getKeyName());
 		}
 		
 		return Requestify.makeRequest(info, params);
@@ -270,8 +270,8 @@ public class Instance
 	public String getPasswordData(HttpVar info, GetPasswordDataRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "GetPasswordData");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.GET_PASSWORD_DATA);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getInstanceId().length() == 0)
 		{
@@ -279,7 +279,7 @@ public class Instance
 		}
 		else
 		{
-			params.put("InstanceId", req.getInstanceId());
+			params.put(Constants.INSTANCE_ID, req.getInstanceId());
 		}
 		return Requestify.makeRequest(info, params);
 	}

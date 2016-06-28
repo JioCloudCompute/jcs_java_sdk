@@ -24,15 +24,15 @@ package com.ril.jcs.services;
 
 public class AuthVar {
 	
-	String url = new String();
-	String verb = new String();
-	String accessKey = new String();
-	String secretKey = new String();
-	String headers = new String();
-	String path = new String();
-	String protocol = new String();
-	String host = new String();
-	String port = new String();
+	public static String url = new String();
+	public static String verb = new String();
+	public static String accessKey = new String();
+	public static String secretKey = new String();
+	public static String headers = new String();
+	public static String path = new String();
+	public static String protocol = new String();
+	public static String host = new String();
+	public static String port = new String();
 	
 
 }

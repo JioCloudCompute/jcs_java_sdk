@@ -47,20 +47,18 @@ public class Requestify
 {
 	public static String makeRequest(HttpVar info, TreeMap<String, String>params) 
 	{
-		AuthVar authData = new AuthVar();
-		authData.url = info.url;
-		authData.verb = info.verb;
-		authData.headers = info.headers;
-		authData.accessKey = Config.getAccessKey();
-		authData.secretKey = Config.getSecretKey();
-		authData.path = "";
+		AuthVar.url = info.url;
+		AuthVar.verb = info.verb;
+		AuthVar.headers = info.headers;
+		AuthVar.accessKey = Config.getAccessKey();
+		AuthVar.secretKey = Config.getSecretKey();
+		AuthVar.path = "";
 		if(info.url.endsWith("/"))
 		{
 			info.url = info.url.substring(0,info.url.length()-1);
 		}
 		
-		Authorization authObject = new Authorization(authData);
-		authObject.addAuthorization(params);
+		Signature.addSignature(params);
 		StringBuilder requestString = new StringBuilder(info.url);
 		requestString.append("/?");
 		

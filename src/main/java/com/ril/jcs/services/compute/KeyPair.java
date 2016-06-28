@@ -35,8 +35,8 @@ public class KeyPair
 	public String describeKeyPairs(HttpVar info)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "DescribeKeyPairs");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.DESCRIBE_KEY_PAIRS);
+		params.put(Constants.VERSION, info.version);
 		
 		return Requestify.makeRequest(info, params);
 	}
@@ -44,8 +44,8 @@ public class KeyPair
 	public String createKeyPair(HttpVar info, CreateKeyPairRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "CreateKeyPair");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.CREATE_KEY_PAIR);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getKeyName().length() == 0)
 		{
@@ -53,7 +53,7 @@ public class KeyPair
 		}
 		else
 		{
-			params.put("KeyName", req.getKeyName());
+			params.put(Constants.KEY_NAME, req.getKeyName());
 		}
 		return Requestify.makeRequest(info, params);		
 	}
@@ -61,8 +61,8 @@ public class KeyPair
 	public String deleteKeyPair(HttpVar info, DeleteKeyPairRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "DeleteKeyPair");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.DELETE_KEY_PAIR);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getKeyName().length() == 0)
 		{
@@ -70,7 +70,7 @@ public class KeyPair
 		}
 		else
 		{
-			params.put("KeyName", req.getKeyName());
+			params.put(Constants.KEY_NAME, req.getKeyName());
 		}
 		return Requestify.makeRequest(info, params);		
 	}
@@ -78,8 +78,8 @@ public class KeyPair
 	public String importKeyPair(HttpVar info, ImportKeyPairRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "ImportKeyPair");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.IMPORT_KEY_PAIR);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getKeyName().length() == 0)
 		{
@@ -87,7 +87,7 @@ public class KeyPair
 		}
 		else
 		{
-			params.put("KeyName", req.getKeyName());
+			params.put(Constants.KEY_NAME, req.getKeyName());
 		}
 
 		if(req.getPublicKeyMaterial().length() == 0)
@@ -96,7 +96,7 @@ public class KeyPair
 		}
 		else
 		{
-			params.put("PublicKeyMaterial", req.getPublicKeyMaterial());
+			params.put(Constants.PUBLIC_KEY_MATERIAL, req.getPublicKeyMaterial());
 		}
 		return Requestify.makeRequest(info, params);		
 	}

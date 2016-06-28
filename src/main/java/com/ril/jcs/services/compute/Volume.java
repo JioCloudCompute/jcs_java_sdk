@@ -39,30 +39,30 @@ public class Volume
 	public String describeVolumes(HttpVar info, DescribeVolumesRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "DescribeVolumes");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.DESCRIBE_VOLUMES);
+		params.put(Constants.VERSION, info.version);
 		
 		if(!req.getVolumeIds().isEmpty())
 		{
 			for(int i=0 ; i<req.getVolumeIds().size() ; i++)
 			{
-				params.put("VolumeId." + Integer.toString(i+1), req.getVolumeIds().get(i));
+				params.put(Constants.VOLUME_ID + "." + Integer.toString(i+1), req.getVolumeIds().get(i));
 			}
 		}
 		
 		if(req.getMaxResults() != -1)
 		{
-			params.put("MaxResults", Integer.toString(req.getMaxResults()));
+			params.put(Constants.MAX_RESULTS, Integer.toString(req.getMaxResults()));
 		}
 
 		if(req.getNextToken().length() != 0)
 		{
-			params.put("NextToken", req.getNextToken());
+			params.put(Constants.NEXT_TOKEN, req.getNextToken());
 		}
 		
 		if(!req.isDetail())
 		{
-			params.put("Detail", Boolean.toString(req.isDetail()));
+			params.put(Constants.DETAIL, Boolean.toString(req.isDetail()));
 		}
 		return Requestify.makeRequest(info, params);
 	}
@@ -70,8 +70,8 @@ public class Volume
 	public String createVolume(HttpVar info, CreateVolumeRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "CreateVolume");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.CREATE_VOLUME);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getSize() == -1 && req.getSnapshotId().length() == 0)
 		{
@@ -79,11 +79,11 @@ public class Volume
 		}
 		if(req.getSnapshotId().length() != 0)
 		{
-			params.put("SnapshotId", req.getSnapshotId());
+			params.put(Constants.SNAPSHOT_ID, req.getSnapshotId());
 		}
 		if(req.getSize() != -1)
 		{
-			params.put("Size", Integer.toString(req.getSize()));
+			params.put(Constants.SIZE, Integer.toString(req.getSize()));
 		}
 		
 		return Requestify.makeRequest(info, params);		
@@ -92,8 +92,8 @@ public class Volume
 	public String deleteVolume(HttpVar info, DeleteVolumeRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "DeleteVolume");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.DELETE_VOLUME);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getVolumeId().length() == 0)
 		{
@@ -101,7 +101,7 @@ public class Volume
 		}
 		else
 		{
-			params.put("VolumeId", req.getVolumeId());
+			params.put(Constants.VOLUME_ID, req.getVolumeId());
 		}
 		return Requestify.makeRequest(info, params);		
 	}
@@ -110,16 +110,15 @@ public class Volume
 	public String attachVolume(HttpVar info, AttachVolumeRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "AttachVolume");
-		params.put("Version", info.version);
-		System.out.println("ac");
+		params.put(Constants.ACTION, Constants.ATTACH_VOLUME);
+		params.put(Constants.VERSION, info.version);
 		if(req.getInstanceId().length() == 0)
 		{
 			System.out.println("Error : InstanceId required");
 		}
 		else
 		{
-			params.put("InstanceId", req.getInstanceId());
+			params.put(Constants.INSTANCE_ID, req.getInstanceId());
 		}
 		if(req.getDevice().length() == 0)
 		{
@@ -127,7 +126,7 @@ public class Volume
 		}
 		else
 		{
-			params.put("Device", req.getDevice());
+			params.put(Constants.DEVICE, req.getDevice());
 		}
 		if(req.getVolumeId().length() == 0)
 		{
@@ -135,7 +134,7 @@ public class Volume
 		}
 		else
 		{
-			params.put("VolumeId", req.getVolumeId());
+			params.put(Constants.VOLUME_ID, req.getVolumeId());
 		}
 		return Requestify.makeRequest(info, params);		
 	}
@@ -145,12 +144,12 @@ public class Volume
 	public String detachVolume(HttpVar info, DetachVolumeRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "DetachVolume");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.DETACH_VOLUME);
+		params.put(Constants.VERSION, info.version);
 
 		if(req.getInstanceId().length() != 0)
 		{
-			params.put("InstanceId", req.getInstanceId());
+			params.put(Constants.INSTANCE_ID, req.getInstanceId());
 		}
 		if(req.getVolumeId().length() == 0)
 		{
@@ -158,7 +157,7 @@ public class Volume
 		}
 		else
 		{
-			params.put("VolumeId", req.getVolumeId());
+			params.put(Constants.VOLUME_ID, req.getVolumeId());
 		}
 		return Requestify.makeRequest(info, params);		
 	}
@@ -166,8 +165,8 @@ public class Volume
 	public String showDeleteOnTerminationFlag(HttpVar info, ShowDeleteOnTerminationFlagRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "ShowDeleteOnTerminationFlag");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.SHOW_DELETE_ON_TERMINATION_FLAG);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getVolumeId().length() == 0)
 		{
@@ -175,7 +174,7 @@ public class Volume
 		}
 		else
 		{
-			params.put("VolumeId", req.getVolumeId());
+			params.put(Constants.VOLUME_ID, req.getVolumeId());
 		}
 		return Requestify.makeRequest(info, params);		
 	}
@@ -183,8 +182,8 @@ public class Volume
 	public String updateDeleteOnTerminationFlag(HttpVar info, UpdateDeleteOnTerminationFlagRequest req)
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
-		params.put("Action", "UpdateDeleteOnTerminationFlag");
-		params.put("Version", info.version);
+		params.put(Constants.ACTION, Constants.UPDATE_DELETE_ON_TERMINATION_FLAG);
+		params.put(Constants.VERSION, info.version);
 		
 		if(req.getVolumeId().length() == 0)
 		{
@@ -192,10 +191,10 @@ public class Volume
 		}
 		else
 		{
-			params.put("VolumeId", req.getVolumeId());
+			params.put(Constants.VOLUME_ID, req.getVolumeId());
 		}
 		
-		params.put("DeleteOnTermination", Boolean.toString(req.isDeleteOnTermination()));
+		params.put(Constants.DELETE_ON_TERMINATION, Boolean.toString(req.isDeleteOnTermination()));
 		
 		return Requestify.makeRequest(info, params);		
 	}
