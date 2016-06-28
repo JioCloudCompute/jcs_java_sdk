@@ -130,7 +130,7 @@ public class Requestify
 	        };
 		}
         
-		HttpsURLConnection connection;
+		HttpsURLConnection connection = null;
 		InputStream response = null;
 		int responseCode = 0;
 		
@@ -149,6 +149,7 @@ public class Requestify
 				response = connection.getErrorStream();
 			}
 
+
 		}
 		catch (IOException e) 
 		{
@@ -164,7 +165,13 @@ public class Requestify
 		    	scanner.close();
 		    	return null;
 		    }
-		    scanner.close();
+		    if(scanner != null){
+		    	scanner.close();
+		    }
+		    if(connection != null){
+		    	connection.disconnect();
+		    }
+		    
 		    return responseBody;
 	}
 }
