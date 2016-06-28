@@ -37,36 +37,39 @@ import org.xml.sax.SAXException;
 
 public class ErrorResponse {
 		
-	public static void Error(final String xmlDoc)
+	public static String Error(final String xmlDoc)
 	{
 		DocumentBuilder db;
-		try {
+		String ErrorMsg = null;
+		try 
+		{
 			db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(xmlDoc));
 
 			Document doc;
-			try {
-				doc = db.parse(is);
-				Element Root = doc.getDocumentElement();
-				Node Ch = Root.getFirstChild().getFirstChild().getFirstChild();
-				System.out.println(Ch.getTextContent());
-				Ch= Ch.getNextSibling();
-				System.out.println(Ch.getTextContent());
-				
-			} catch (SAXException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} catch (ParserConfigurationException e1) {
+			doc = db.parse(is);
+			Element Root = doc.getDocumentElement();
+			Node Ch = Root.getFirstChild().getFirstChild().getFirstChild();
+			Ch= Ch.getNextSibling();
+			ErrorMsg = Ch.getTextContent();
+
+		} 
+		catch (ParserConfigurationException e1) 
+		{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		} 
+		catch (SAXException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
-		
-    
+		return ErrorMsg;
 	}
 }

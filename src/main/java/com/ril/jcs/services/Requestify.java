@@ -170,27 +170,35 @@ public class Requestify
 
 		Scanner scanner = new Scanner(response);
 		String responseBody = scanner.useDelimiter("\\A").next();
+		
+		
 		if(responseCode >300 || responseCode < 200)
 		{
-			ErrorResponse.Error(responseBody);
+			String ErrorMsg = ErrorResponse.Error(responseBody);
 			scanner.close();
-			if (responseCode == 400) {
-				throw new BadRequestException("hello");
+			if (responseCode == 400) 
+			{
+				throw new BadRequestException(ErrorMsg);
 			} 
-			else if (responseCode == 403) {
-				throw new NotAuthorizedException("hello");
+			else if (responseCode == 403) 
+			{
+				throw new NotAuthorizedException(ErrorMsg);
 			} 
-			else if (responseCode == 404) {
-				throw new EntityDoesNotExistsException("hello");
+			else if (responseCode == 404) 
+			{
+				throw new EntityDoesNotExistsException(ErrorMsg);
 			} 
-			else if (responseCode == 409) {
-				throw new EntityAlreadyExistsException("hello");
+			else if (responseCode == 409) 
+			{
+				throw new EntityAlreadyExistsException(ErrorMsg);
 			} 
-			else {
-				throw new ComputeClientException("hello");
+			else 
+			{
+				throw new ComputeClientException(ErrorMsg);
 			}
-//			return null;
 		}
+		
+		
 		if(scanner != null){
 			scanner.close();
 		}
