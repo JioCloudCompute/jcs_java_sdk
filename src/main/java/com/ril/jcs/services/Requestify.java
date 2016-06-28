@@ -57,87 +57,95 @@ public class Requestify
 		{
 			info.url = info.url.substring(0,info.url.length()-1);
 		}
-		
+
 		Signature.addSignature(params);
 		StringBuilder requestString = new StringBuilder(info.url);
 		requestString.append("/?");
-		
+
 		for (Map.Entry<String, String> entry : params.entrySet())
 		{
-		    try 
-		    {
+			try 
+			{
 				requestString.append(entry.getKey() + "=").append(URLEncoder.encode(entry.getValue(), "UTF-8") + "&");
 			} 
-		    catch (UnsupportedEncodingException e) 
-		    {
+			catch (UnsupportedEncodingException e) 
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return requester(requestString.substring(0, requestString.length()-1));
 	}
-	
-	private static String requester (String requestString )
+
+	private static void disableSslVerification()
 	{
-	       // Create a trust manager that does not validate certificate chains
+		TrustManager[] trustAllCerts = new TrustManager[] 
+				{	new X509TrustManager() 
+				{
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() 
+					{
+						return null;
+					}
+					public void checkClientTrusted(X509Certificate[] certs, String authType) 
+					{
+					}
+					public void checkServerTrusted(X509Certificate[] certs, String authType) 
+					{
+					}
+				}
+				};
+
+		// Install the all-trusting trust manager
+		SSLContext sc;
+		try 
+		{
+			sc = SSLContext.getInstance("SSL");
+			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		} 
+		catch (NoSuchAlgorithmException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		catch (KeyManagementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+
+		// Create all-trusting host name verifier
+		HostnameVerifier allHostsValid = new HostnameVerifier() 
+		{
+			public boolean verify(String hostname, SSLSession session) 
+			{
+				return true;
+			}
+		};
+	}
+
+
+
+
+	private static String requester (String requestString)
+	{
+		// Create a trust manager that does not validate certificate chains
 		if(!Config.isSecure())
 		{
-	        TrustManager[] trustAllCerts = new TrustManager[] 
-	        {	new X509TrustManager() 
-	        	{
-	                public java.security.cert.X509Certificate[] getAcceptedIssuers() 
-	                {
-	                    return null;
-	                }
-	                public void checkClientTrusted(X509Certificate[] certs, String authType) 
-	                {
-	                }
-	                public void checkServerTrusted(X509Certificate[] certs, String authType) 
-	                {
-	                }
-	            }
-	        };
-	 
-	        // Install the all-trusting trust manager
-		        SSLContext sc;
-			try 
-			{
-				sc = SSLContext.getInstance("SSL");
-				sc.init(null, trustAllCerts, new java.security.SecureRandom());
-				HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-			} 
-			catch (NoSuchAlgorithmException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-			catch (KeyManagementException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		        
-		        
-		 
-		        // Create all-trusting host name verifier
-	        HostnameVerifier allHostsValid = new HostnameVerifier() 
-	        {
-	            public boolean verify(String hostname, SSLSession session) 
-	            {
-	                return true;
-	            }
-	        };
+			disableSslVerification();
 		}
-        
+
 		HttpsURLConnection connection = null;
 		InputStream response = null;
 		int responseCode = 0;
-		
+
 		try 
 		{
 			connection = (HttpsURLConnection) new URL(requestString).openConnection();
 			connection.setRequestProperty("Accept-Charset", "UTF-8");
 			responseCode = connection.getResponseCode();
-			  
+
 			if(responseCode == 200)
 			{
 				response = connection.getInputStream();
@@ -154,22 +162,22 @@ public class Requestify
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
-			Scanner scanner = new Scanner(response);
-		    String responseBody = scanner.useDelimiter("\\A").next();
-		    if(responseCode != 200)
-		    {
-		    	ErrorResponse.Error(responseBody);
-		    	scanner.close();
-		    	return null;
-		    }
-		    if(scanner != null){
-		    	scanner.close();
-		    }
-		    if(connection != null){
-		    	connection.disconnect();
-		    }
-		    
-		    return responseBody;
+
+		Scanner scanner = new Scanner(response);
+		String responseBody = scanner.useDelimiter("\\A").next();
+		if(responseCode >300 || responseCode < 200)
+		{
+			ErrorResponse.Error(responseBody);
+			scanner.close();
+			return null;
+		}
+		if(scanner != null){
+			scanner.close();
+		}
+		if(connection != null){
+			connection.disconnect();
+		}
+
+		return responseBody;
 	}
 }
