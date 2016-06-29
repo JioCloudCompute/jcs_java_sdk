@@ -37,18 +37,26 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 public class Signature 
 {
+	private static final String HMAC_SHA256_ALGORITHM = "HmacSHA256";
+	private static final String UTF8_CHARSET = "UTF-8";
+	private static final String VERSION = "2";
+	private static final String JCS_ACCESS_KEY_ID = "JCSAccessKeyId";
+	private static final String SIGNATURE_VERSION = "SignatureVersion";
+	private static final String SIGNATURE_METHOD = "SignatureMethod";
+	private static final String TIMESTAMP = "Timestamp";
+	private static final String SIGNATURE  = "Signature";
 	
 	private static void addParams(TreeMap<String, String> params)
 	{
-		params.put("JCSAccessKeyId", AuthVar.accessKey);
-		params.put("SignatureVersion","2");
-		params.put("SignatureMethod", "HmacSHA256");
+		params.put(JCS_ACCESS_KEY_ID, AuthVar.accessKey);
+		params.put(SIGNATURE_VERSION,VERSION);
+		params.put(SIGNATURE_METHOD, HMAC_SHA256_ALGORITHM);
 		//Time
 		Date dNow = new Date();
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		formatDate.setTimeZone(TimeZone.getTimeZone("GMT"));
 
-		params.put("Timestamp", formatDate.format(dNow));
+		params.put(TIMESTAMP, formatDate.format(dNow));
 	}
 	
 	private static void UrlParser()
@@ -120,15 +128,15 @@ public class Signature
 		Mac sha256_HMAC;
 		try 
 		{
-			sha256_HMAC = Mac.getInstance("HmacSHA256");
-			SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+			sha256_HMAC = Mac.getInstance(HMAC_SHA256_ALGORITHM);
+			SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), HMAC_SHA256_ALGORITHM);
 			sha256_HMAC.init(secret_key);
 
 			@SuppressWarnings("restriction")
 			String hmacSignature = DatatypeConverter.printBase64Binary(sha256_HMAC.doFinal(canonicalString.getBytes()));
 
 
-			params.put("Signature", hmacSignature);
+			params.put(SIGNATURE, hmacSignature);
 		}
 		catch (NoSuchAlgorithmException e) 
 		{
