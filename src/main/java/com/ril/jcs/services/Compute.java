@@ -23,13 +23,13 @@
 package com.ril.jcs.services;
 
 import java.io.IOException;
-import java.security.Security;
 
 import com.ril.jcs.services.compute.Image;
 import com.ril.jcs.services.compute.Instance;
 import com.ril.jcs.services.compute.KeyPair;
 import com.ril.jcs.services.compute.Snapshot;
 import com.ril.jcs.services.compute.Volume;
+import com.ril.jcs.services.compute.exception.ComputeClientException;
 import com.ril.jcs.services.compute.model.AttachVolumeRequest;
 import com.ril.jcs.services.compute.model.AttachVolumeResponse;
 import com.ril.jcs.services.compute.model.CreateKeyPairRequest;
@@ -129,7 +129,7 @@ public class Compute
 		info.version = "2016-03-01";
 		
 	}
-	public DescribeImagesResponse describeImages(DescribeImagesRequest req) 
+	public DescribeImagesResponse describeImages(DescribeImagesRequest req) throws ComputeClientException 
 	{
 		String response =  image.describeImages(info, req);
 		if(response != null)
@@ -139,7 +139,7 @@ public class Compute
 		return null;
 	}
 	
-	public DescribeInstancesResponse describeInstances(DescribeInstancesRequest req) 
+	public DescribeInstancesResponse describeInstances(DescribeInstancesRequest req) throws ComputeClientException 
 	{
 		String response =  instance.describeInstances(info, req);
 		if(response != null)
@@ -149,7 +149,7 @@ public class Compute
 		return null;
 	}
 	
-	public DescribeInstanceTypesResponse describeInstanceTypes(DescribeInstanceTypesRequest req) 
+	public DescribeInstanceTypesResponse describeInstanceTypes(DescribeInstanceTypesRequest req) throws ComputeClientException 
 	{
 		String response =  instance.describeInstanceTypes(info, req);
 		if(response != null)
@@ -159,7 +159,7 @@ public class Compute
 		return null;
 	}
 	
-	public StartInstancesResponse startInstances(StartInstancesRequest req) 
+	public StartInstancesResponse startInstances(StartInstancesRequest req) throws ComputeClientException 
 	{
 		String response =  instance.startInstances(info, req);
 		if(response != null)
@@ -169,7 +169,7 @@ public class Compute
 		return null;
 	}
 	
-	public StopInstancesResponse stopInstances(StopInstancesRequest req) 
+	public StopInstancesResponse stopInstances(StopInstancesRequest req) throws ComputeClientException 
 	{
 		String response =  instance.stopInstances(info, req);
 		if(response != null)
@@ -179,7 +179,7 @@ public class Compute
 		return null;
 	}
 
-	public RebootInstancesResponse rebootInstances(RebootInstancesRequest req) 
+	public RebootInstancesResponse rebootInstances(RebootInstancesRequest req) throws ComputeClientException 
 	{
 		String response =  instance.rebootInstances(info, req);
 		if(response != null)
@@ -189,7 +189,7 @@ public class Compute
 		return null;
 	}
 	
-	public TerminateInstancesResponse terminateInstances(TerminateInstancesRequest req) 
+	public TerminateInstancesResponse terminateInstances(TerminateInstancesRequest req) throws ComputeClientException 
 	{
 		String response =  instance.terminateInstances(info, req);
 		if(response != null)
@@ -199,7 +199,7 @@ public class Compute
 		return null;
 	}
 	
-	public RunInstancesResponse runInstances(RunInstancesRequest req) 
+	public RunInstancesResponse runInstances(RunInstancesRequest req) throws ComputeClientException 
 	{
 		String response =  instance.runInstances(info, req);
 		if(response != null)
@@ -209,7 +209,7 @@ public class Compute
 		return null;
 	}
 	
-	public GetPasswordDataResponse getPasswordData(GetPasswordDataRequest req)
+	public GetPasswordDataResponse getPasswordData(GetPasswordDataRequest req) throws ComputeClientException
 	{
 		String response = instance.getPasswordData(info, req);
 		if(response != null)
@@ -221,7 +221,7 @@ public class Compute
 		return null;
 	}
 
-	public CreateVolumeResponse createVolume(CreateVolumeRequest req) 
+	public CreateVolumeResponse createVolume(CreateVolumeRequest req) throws ComputeClientException 
 	{
 		String response =  volume.createVolume(info, req);
 		if(response != null)
@@ -231,7 +231,7 @@ public class Compute
 		return null;
 	}
 
-	public DeleteVolumeResponse deleteVolume(DeleteVolumeRequest req) 
+	public DeleteVolumeResponse deleteVolume(DeleteVolumeRequest req) throws ComputeClientException 
 	{
 		String response =  volume.deleteVolume(info, req);
 		if(response != null)
@@ -241,7 +241,7 @@ public class Compute
 		return null;
 	}
 
-	public AttachVolumeResponse attachVolume(AttachVolumeRequest req) 
+	public AttachVolumeResponse attachVolume(AttachVolumeRequest req) throws ComputeClientException 
 	{
 		String response =  volume.attachVolume(info, req);
 		if(response != null)
@@ -251,7 +251,7 @@ public class Compute
 		return null;
 	}
 	
-	public DetachVolumeResponse detachVolume(DetachVolumeRequest req) 
+	public DetachVolumeResponse detachVolume(DetachVolumeRequest req) throws ComputeClientException 
 	{
 		String response =  volume.detachVolume(info, req);
 		if(response != null)
@@ -261,7 +261,7 @@ public class Compute
 		return null;
 	}
 	
-	public DescribeVolumesResponse describeVolumes(DescribeVolumesRequest req) 
+	public DescribeVolumesResponse describeVolumes(DescribeVolumesRequest req) throws ComputeClientException 
 	{
 		String response =  volume.describeVolumes(info, req);
 		if(response != null)
@@ -271,7 +271,7 @@ public class Compute
 		return null;
 	}
 	
-	public ShowDeleteOnTerminationFlagResponse showDeleteOnTerminationFlag(ShowDeleteOnTerminationFlagRequest req) 
+	public ShowDeleteOnTerminationFlagResponse showDeleteOnTerminationFlag(ShowDeleteOnTerminationFlagRequest req) throws ComputeClientException 
 	{
 		String response =  volume.showDeleteOnTerminationFlag(info, req);
 		if(response != null)
@@ -281,7 +281,7 @@ public class Compute
 		return null;
 	}
 	
-	public UpdateDeleteOnTerminationFlagResponse updateDeleteOnTerminationFlag(UpdateDeleteOnTerminationFlagRequest req) 
+	public UpdateDeleteOnTerminationFlagResponse updateDeleteOnTerminationFlag(UpdateDeleteOnTerminationFlagRequest req) throws ComputeClientException 
 	{
 		String response =  volume.updateDeleteOnTerminationFlag(info, req);
 		if(response != null)
@@ -291,7 +291,7 @@ public class Compute
 		return null;
 	}
 	
-	public CreateSnapshotResponse createSnapshot(CreateSnapshotRequest req) 
+	public CreateSnapshotResponse createSnapshot(CreateSnapshotRequest req) throws ComputeClientException 
 	{
 		String response =  snapshot.createSnapshot(info, req);
 		if(response != null)
@@ -301,7 +301,7 @@ public class Compute
 		return null;
 	}
 	
-	public DeleteSnapshotResponse deleteSnapshot(DeleteSnapshotRequest req) 
+	public DeleteSnapshotResponse deleteSnapshot(DeleteSnapshotRequest req) throws ComputeClientException 
 	{
 		String response =  snapshot.deleteSnapshot(info, req);
 		if(response != null)
@@ -311,7 +311,7 @@ public class Compute
 		return null;
 	}
 	
-	public DescribeSnapshotsResponse describeSnapshots(DescribeSnapshotsRequest req) 
+	public DescribeSnapshotsResponse describeSnapshots(DescribeSnapshotsRequest req) throws ComputeClientException 
 	{
 		String response =  snapshot.describeSnapshots(info, req);
 		if(response != null)
@@ -321,7 +321,7 @@ public class Compute
 		return null;
 	}
 	
-	public CreateKeyPairResponse createKeyPair(CreateKeyPairRequest req) 
+	public CreateKeyPairResponse createKeyPair(CreateKeyPairRequest req) throws ComputeClientException 
 	{
 		String response =  keyPair.createKeyPair(info, req);
 		if(response != null)
@@ -331,7 +331,7 @@ public class Compute
 		return null;
 	}
 	
-	public DeleteKeyPairResponse deleteKeyPair(DeleteKeyPairRequest req) 
+	public DeleteKeyPairResponse deleteKeyPair(DeleteKeyPairRequest req) throws ComputeClientException 
 	{
 		String response =  keyPair.deleteKeyPair(info, req);
 		if(response != null)
@@ -341,7 +341,7 @@ public class Compute
 		return null;
 	}
 	
-	public DescribeKeyPairsResponse describeKeyPairs() 
+	public DescribeKeyPairsResponse describeKeyPairs() throws ComputeClientException
 	{
 		String response =  keyPair.describeKeyPairs(info);
 		if(response != null)
@@ -351,7 +351,7 @@ public class Compute
 		return null;
 	}
 
-	public ImportKeyPairResponse importKeyPair(ImportKeyPairRequest req) 
+	public ImportKeyPairResponse importKeyPair(ImportKeyPairRequest req) throws ComputeClientException 
 	{
 		String response =  keyPair.importKeyPair(info, req);
 		if(response != null)

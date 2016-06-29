@@ -39,6 +39,7 @@ import javax.xml.bind.DatatypeConverter;
 import com.ril.jcs.services.HttpVar;
 import com.ril.jcs.services.Requestify;
 import com.ril.jcs.services.Utils;
+import com.ril.jcs.services.compute.exception.ComputeClientException;
 import com.ril.jcs.services.compute.model.DescribeInstanceTypesRequest;
 import com.ril.jcs.services.compute.model.DescribeInstancesRequest;
 import com.ril.jcs.services.compute.model.GetPasswordDataRequest;
@@ -50,7 +51,7 @@ import com.ril.jcs.services.compute.model.TerminateInstancesRequest;
 
 public class Instance
 {
-	public String describeInstances(HttpVar info, DescribeInstancesRequest req)
+	public String describeInstances(HttpVar info, DescribeInstancesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DESCRIBE_INSTANCES);
@@ -64,7 +65,7 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String describeInstanceTypes(HttpVar info, DescribeInstanceTypesRequest req)
+	public String describeInstanceTypes(HttpVar info, DescribeInstanceTypesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DESCRIBE_INSTANCE_TYPES);
@@ -78,7 +79,7 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String startInstances(HttpVar info, StartInstancesRequest req)
+	public String startInstances(HttpVar info, StartInstancesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.START_INSTANCES);
@@ -98,7 +99,7 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String stopInstances(HttpVar info, StopInstancesRequest req)
+	public String stopInstances(HttpVar info, StopInstancesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.STOP_INSTANCES);
@@ -119,7 +120,7 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}	
 	
-	public String rebootInstances(HttpVar info, RebootInstancesRequest req)
+	public String rebootInstances(HttpVar info, RebootInstancesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.REBOOT_INSTANCES);
@@ -140,7 +141,7 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String terminateInstances(HttpVar info, TerminateInstancesRequest req)
+	public String terminateInstances(HttpVar info, TerminateInstancesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.TERMINATE_INSTANCES);
@@ -161,7 +162,7 @@ public class Instance
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String runInstances(HttpVar info, RunInstancesRequest req)
+	public String runInstances(HttpVar info, RunInstancesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.RUN_INSTANCES);
@@ -267,7 +268,7 @@ public class Instance
 		
 	}
 	
-	public String getPasswordData(HttpVar info, GetPasswordDataRequest req)
+	public String getPasswordData(HttpVar info, GetPasswordDataRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.GET_PASSWORD_DATA);

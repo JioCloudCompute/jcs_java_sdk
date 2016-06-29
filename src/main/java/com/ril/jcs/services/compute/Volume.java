@@ -26,6 +26,7 @@ import java.util.TreeMap;
 
 import com.ril.jcs.services.HttpVar;
 import com.ril.jcs.services.Requestify;
+import com.ril.jcs.services.compute.exception.ComputeClientException;
 import com.ril.jcs.services.compute.model.AttachVolumeRequest;
 import com.ril.jcs.services.compute.model.CreateVolumeRequest;
 import com.ril.jcs.services.compute.model.DeleteVolumeRequest;
@@ -36,7 +37,7 @@ import com.ril.jcs.services.compute.model.UpdateDeleteOnTerminationFlagRequest;
 
 public class Volume
 {
-	public String describeVolumes(HttpVar info, DescribeVolumesRequest req)
+	public String describeVolumes(HttpVar info, DescribeVolumesRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DESCRIBE_VOLUMES);
@@ -67,7 +68,7 @@ public class Volume
 		return Requestify.makeRequest(info, params);
 	}
 	
-	public String createVolume(HttpVar info, CreateVolumeRequest req)
+	public String createVolume(HttpVar info, CreateVolumeRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.CREATE_VOLUME);
@@ -89,7 +90,7 @@ public class Volume
 		return Requestify.makeRequest(info, params);		
 	}
 	
-	public String deleteVolume(HttpVar info, DeleteVolumeRequest req)
+	public String deleteVolume(HttpVar info, DeleteVolumeRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DELETE_VOLUME);
@@ -107,7 +108,7 @@ public class Volume
 	}
 	
 	
-	public String attachVolume(HttpVar info, AttachVolumeRequest req)
+	public String attachVolume(HttpVar info, AttachVolumeRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.ATTACH_VOLUME);
@@ -141,7 +142,7 @@ public class Volume
 	
 
 	
-	public String detachVolume(HttpVar info, DetachVolumeRequest req)
+	public String detachVolume(HttpVar info, DetachVolumeRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.DETACH_VOLUME);
@@ -162,7 +163,7 @@ public class Volume
 		return Requestify.makeRequest(info, params);		
 	}
 
-	public String showDeleteOnTerminationFlag(HttpVar info, ShowDeleteOnTerminationFlagRequest req)
+	public String showDeleteOnTerminationFlag(HttpVar info, ShowDeleteOnTerminationFlagRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.SHOW_DELETE_ON_TERMINATION_FLAG);
@@ -179,7 +180,7 @@ public class Volume
 		return Requestify.makeRequest(info, params);		
 	}
 	
-	public String updateDeleteOnTerminationFlag(HttpVar info, UpdateDeleteOnTerminationFlagRequest req)
+	public String updateDeleteOnTerminationFlag(HttpVar info, UpdateDeleteOnTerminationFlagRequest req) throws ComputeClientException
 	{
 		TreeMap<String, String>params = new TreeMap<String,String>();
 		params.put(Constants.ACTION, Constants.UPDATE_DELETE_ON_TERMINATION_FLAG);
