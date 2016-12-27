@@ -35,36 +35,25 @@ public class Config {
 	static String accessKey;
 	static String secretKey;
 	static HashMap<String, String> endPoints;
-	public Config() throws IOException
+	public Config(String compute_endpoint, String access_key, String secret_key) throws IOException
 	{
-		secure = false;
-		debug = false;
-		
-		//Get Access Key and Secret Key from file
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties");
-		Properties prop = new Properties();
-		
-		if(inputStream != null)
-		{
-			prop.load(inputStream);
-		}else
-		{
-			throw new FileNotFoundException("Property File Not Found");
-		}
-		
-		accessKey = prop.getProperty("accessKey");
-		secretKey = prop.getProperty("secretKey");
-		secure = Boolean.parseBoolean(prop.getProperty("secure"));
-		debug = Boolean.parseBoolean(prop.getProperty("debug"));
-		
+		secure = true;
+		debug = false;	
+  	accessKey = access_key;
+		secretKey = secret_key;
 		//Set up endpoints
 		endPoints = new HashMap<String, String>();
-		endPoints.put("compute","https://compute.ind-west-1.staging.jiocloudservices.com");
-		endPoints.put("vpc", "https://vpc.ind-west-1.jiocloudservices.com");
-		endPoints.put("dss", "https://dss.ind-west-1.jiocloudservices.com");
-		endPoints.put("iam", "https://iam.ind-west-1.jiocloudservices.com");
-		endPoints.put("rds", "https://rds.ind-west-1.jiocloudservices.com");
+    endPoints.put("compute", compute_endpoint);
 	}
+
+  public void setSecure(boolean sec)
+  {
+    secure=sec;
+  }
+  public void setDebug(boolean deb)
+  {
+    debug = deb;
+  }
 
 	public static boolean isSecure() {
 		return secure;
