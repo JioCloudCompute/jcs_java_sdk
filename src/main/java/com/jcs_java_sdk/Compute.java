@@ -107,7 +107,7 @@ public class Compute
 	private KeyPair keyPair;
 	private Snapshot snapshot;
 	private Volume volume;
-	public Compute()
+	public Compute(String endpoint, String access_key, String secret_key)
 	{
 		info = new HttpVar();
 		image = new Image();
@@ -117,7 +117,7 @@ public class Compute
 		volume = new Volume();
 		try 
 		{
-			new Config();
+			new Config(endpoint, access_key, secret_key);
 		} 
 		catch (IOException e) 
 		{
